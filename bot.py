@@ -239,5 +239,4 @@ class TTT:
 		return False
 	# </snippet>
 
-def setup(bot):
-	bot.add_cog(TTT(bot))
+client.run(os.getenv('Token'))
