@@ -32,7 +32,7 @@ async def kick(ctx,user:discord.Member):
         
     try:
         await client.kick(user)
-        await client.say(user.name+' was kicked✅  Good bye '+user.name+'!')
+        await client.say(user.name+' was kicked?  Good bye '+user.name+'!')
 
     except discord.Forbidden:
         await client.say('Permission denied.')
@@ -75,7 +75,7 @@ async def mute(ctx,user:discord.Member):
        role = discord.utils.get(ctx.message.server.roles,name='Muted')        
     try:
         await client.add_roles(ctx.message.mentions[0], role)	 		
-        await client.say('Muted ✅ '+user.name+' 🔇')
+        await client.say('Muted ? '+user.name+' ??')
           
 
     except discord.Forbidden:
@@ -97,7 +97,7 @@ async def unmute(ctx,user:discord.Member):
        role = discord.utils.get(ctx.message.server.roles,name='Muted')        
     try:
         await client.remove_roles(ctx.message.mentions[0], role)	 		
-        await client.say('Unmuted ✅ '+user.name+' 🔉')
+        await client.say('Unmuted ? '+user.name+' ??')
     except discord.Forbidden:
         await client.say('Permission denied.')
         return
@@ -117,7 +117,7 @@ async def ban(ctx,user:discord.Member):
         
     try:
         await client.ban(user)
-        await client.say(user.name+' was banned ✅  Good bye '+user.name+'!')
+        await client.say(user.name+' was banned ?  Good bye '+user.name+'!')
 
     except discord.Forbidden:
 
@@ -161,6 +161,15 @@ async def say(ctx, *, msg = None):
 
     if not msg: await client.say("Please specify a message to send")
     else: await client.say(msg)
+    return
+
+@client.command(pass_context = True)
+@commands.has_permissions(mute_members=True)
+async def rules(ctx, *, msg = None):
+    await client.delete_message(ctx.message)
+
+    if not msg: await client.say("Please specify a user to warn")
+    else: await client.say(msg + 'Please Read <#469507420826238996> and never break any one of them again otherwise i will mute/kick/ban you next time.')
     return
 
 client.run(os.getenv('Token'))
