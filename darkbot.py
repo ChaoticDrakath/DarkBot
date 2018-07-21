@@ -172,4 +172,11 @@ async def rules(ctx, *, msg = None):
     else: await client.say(msg + 'Please Read <#469507420826238996> and never break any one of them again otherwise i will mute/kick/ban you next time.')
     return
 
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def warndm(ctx, member: discord.Member):
+    await client.delete_message(ctx.message)
+    await client.send_message(member, 'Please Read <#469507420826238996> and never break any one of them again otherwise i will mute/kick/ban you next time.')
+    return
+
 client.run(os.getenv('Token'))
