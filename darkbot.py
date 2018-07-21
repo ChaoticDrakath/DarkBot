@@ -5,7 +5,7 @@ from discord.ext import commands
 import platform
 import os
 
-client = Bot(description="DarkBot Bot is best", command_prefix="d!", pm_help = False)
+client = Bot(description="DarkBot Bot is best", command_prefix="d!", pm_help = True)
 
 
 @client.event
