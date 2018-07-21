@@ -2,5 +2,5 @@ discord.py
 
 asyncio
 TicTacToe 
-XTacToe
+
 exit
