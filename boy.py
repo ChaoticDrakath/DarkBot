@@ -3,7 +3,7 @@ from discord.ext import commands
 import random
 
 description = '''This bot is cool and made by DarkLegened'''
-bot = commands.Bot(command_prefix='d!', description=description)
+bot = commands.Bot(command_prefix='d!', description='Thanks for using DarkBot')
 
 @bot.event
 async def on_ready():
