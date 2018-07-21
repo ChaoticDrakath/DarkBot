@@ -15,7 +15,7 @@ async def on_ready():
     print('--------')
     print('Started Dark BOT')
     print('Created by Utkarsh')
-    return await client.change_presence(game=discord.Game(name='Looking for h!help'))
+    return await client.change_presence(game=discord.Game(name='Looking for d!help'))
 
 @client.event
 async def on_member_join(member):
