@@ -13,11 +13,6 @@ async def on_ready():
     print('------')
 
 @bot.command()
-async def add(left : int, right : int):
-    """Adds two numbers together."""
-    await bot.say(left + right)
-
-@bot.command()
 async def roll(dice : str):
     """Rolls a dice in NdN format."""
     try:
@@ -39,10 +34,5 @@ async def repeat(times : int, content='repeating...'):
     """Repeats a message multiple times."""
     for i in range(times):
         await bot.say(content)
-
-@bot.command()
-async def joined(member : discord.Member):
-    """Says when a member joined."""
-    await bot.say('{0.name} joined in {0.joined_at}'.format(member))
 
 bot.run(os.environ['Token'])
