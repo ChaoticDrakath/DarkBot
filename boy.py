@@ -1,38 +1,35 @@
 import discord
+from discord.ext.commands import Bot
 from discord.ext import commands
-import random
+import asyncio
+import time
 
-description = '''This bot is cool and made by DarkLegened'''
-bot = commands.Bot(command_prefix='d!', description='Thanks for using DarkBot')
 
-@bot.event
+Client = discord.Client()
+client = commands.Bot(command_prefix = "!")
+
+
+@client.event
 async def on_ready():
-    print('Logged in as')
-    print(bot.user.name)
-    print(bot.user.id)
-    print('------')
+    print("Bot is online and connected to Discord")
 
-@bot.command()
-async def roll(dice : str):
-    """Rolls a dice in NdN format."""
-    try:
-        rolls, limit = map(int, dice.split('d'))
-    except Exception:
-        await bot.say('Format has to be in NdN!')
-        return
 
-    result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
-    await bot.say(result)
+@client.event
+async def on_message(message):
+    if message.content.upper().startswith('!PING'):
+        userID = message.author.id
+        await client.send_message(message.channel, "<@%s> Pong!" % (userID))
+    if message.content.upper().startswith('!SAY'):
+        if message.author.id == "<user id>": #Replace <User ID> with the ID of the user you want to be able to execute this command!
+            args = message.content.split(" ")
+            await client.send_message(message.channel, "%s" % (" ".join(args[1:])))
+        else:
+            await client.send_message(message.channel, "You do not have permission")
+    if message.content.upper().startswith('!AMIADMIN'):
+        if "<role id>" in [role.id for role in message.author.roles]: #Replace <Role ID> with the ID of the role you want to be able to execute this command
+            await client.send_message(message.channel, "You are an admin")
+        else:
+            await client.send_message(message.channel, "You are not an admin")
+        
 
-@bot.command(description='For when you wanna settle the score some other way')
-async def choose(*choices : str):
-    """Chooses between multiple choices."""
-    await bot.say(random.choice(choices))
-
-@bot.command()
-async def repeat(times : int, content='repeating...'):
-    """Repeats a message multiple times."""
-    for i in range(times):
-        await bot.say(content)
-
-bot.run(os.environ['Token'])
+client.run(os.getenv('Token'))
