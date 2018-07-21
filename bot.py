@@ -126,5 +126,5 @@ async def msg_help(message):
     await client.send_message(message.channel, t)
 
         
-
-client.run(os.getenv('Token'))
+games = []
+client.run(get_Token())
