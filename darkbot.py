@@ -243,6 +243,6 @@ async def userinfo(ctx, user: discord.Member):
     embed.add_field(name="Highest role", value=user.top_role)
     embed.add_field(name="Joined", value=user.joined_at)
     embed.set_thumbnail(url=user.avatar_url)
-    await bot.say(embed=embed)
+    await client.say(embed=embed)
     
 client.run(os.getenv('Token'))
