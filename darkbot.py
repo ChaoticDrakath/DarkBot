@@ -227,4 +227,14 @@ async def norole(ctx, *, msg = None):
     else: await client.say(msg + ', Please Do not ask for promotions check <#469507420826238996> again.')
     return
     
+@client.command(pass_context=True)
+async def unverify(ctx):
+    role = discord.utils.get(ctx.message.server.roles, name='Unverified')
+    await client.add_roles(ctx.message.author, role)
+    
+@client.command(pass_context=True)
+async def verify(ctx):
+    role = discord.utils.get(ctx.message.server.roles, name='Unverified')
+    await client.add_roles(ctx.message.author, role)
+    
 client.run(os.getenv('Token'))
