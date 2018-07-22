@@ -186,5 +186,13 @@ async def dm(ctx, member: discord.Member , msg = None):
     await client.send_message(member, msg)
     return
 
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True) 
+async def bans(ctx):
+    '''Gets A List Of Users Who Are No Longer With us'''
+    x = await client.get_bans(ctx.message.server)
+    x = '\n'.join([y.name for y in x])
+    embed = discord.Embed(title = "List of The Banned Idiots", description = x, color = 0xFFFFF)
+    return await client.say(embed = embed)
 
 client.run(os.getenv('Token'))
