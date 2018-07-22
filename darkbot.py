@@ -75,7 +75,7 @@ async def mute(ctx,user:discord.Member):
        role = discord.utils.get(ctx.message.server.roles,name='Muted')        
     try:
         await client.add_roles(ctx.message.mentions[0], role)	 		
-        await client.say('Muted ? '+user.name+' ??')
+        await client.say('Muted '+user.name+' :mute: ')
           
 
     except discord.Forbidden:
@@ -97,7 +97,7 @@ async def unmute(ctx,user:discord.Member):
        role = discord.utils.get(ctx.message.server.roles,name='Muted')        
     try:
         await client.remove_roles(ctx.message.mentions[0], role)	 		
-        await client.say('Unmuted ? '+user.name+' ??')
+        await client.say('Unmuted '+user.name+' :rofl: ')
     except discord.Forbidden:
         await client.say('Permission denied.')
         return
