@@ -186,4 +186,25 @@ async def dm(ctx, member: discord.Member , msg = None):
     await client.send_message(member, msg)
     return
 
+ @client.command(pass_context=True)
+ @commands.has_permissions(manage_roles=True) 
+    async def role(self, ctx, *, role: discord.Role = None):
+        """
+        Toggle whether or not you have a role. Usage: `d!role DivinityPing`. Can take roles with spaces.
+        :param role: Anything after "role"; should be the role name.
+        """
+        if role is None:
+            return await self.bot.say("You haven't specified a role! ")
+
+        if role not in ctx.message.server.roles:
+            return await self.bot.say("That role doesn't exist.")
+
+        if role not in ctx.message.author.roles:
+            await self.bot.add_roles(ctx.message.author, role)
+            return await self.bot.say("{} role has been added to {}.".format(role, ctx.message.author.mention))
+
+        if role in ctx.message.author.roles:
+            await self.bot.remove_roles(ctx.message.author, role)
+            return await self.bot.say("{} role has been removed from {}."
+                                      .format(role, ctx.message.author.mention))
 client.run(os.getenv('Token'))
