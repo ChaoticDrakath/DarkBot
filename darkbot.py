@@ -17,12 +17,6 @@ async def on_ready():
     print('Created by Utkarsh')
     return await client.change_presence(game=discord.Game(name='Looking for d!help'))
 
-@client.event
-async def on_member_join(member):
-    print("In our server" + member.name + " joined just joined")
-    await client.send_message(member, newUserMessage)
-    print("Sent message to " + member.name)
-
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)     
 async def kick(ctx,user:discord.Member):
