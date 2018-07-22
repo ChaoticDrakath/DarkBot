@@ -194,17 +194,17 @@ async def dm(ctx, member: discord.Member , msg = None):
         :param role: Anything after "role"; should be the role name.
         """
         if role is None:
-            return await self.bot.say("You haven't specified a role! ")
+            return await client.say("You haven't specified a role! ")
 
         if role not in ctx.message.server.roles:
-            return await self.bot.say("That role doesn't exist.")
+            return await client.say("That role doesn't exist.")
 
         if role not in ctx.message.author.roles:
-            await self.bot.add_roles(ctx.message.author, role)
-            return await self.bot.say("{} role has been added to {}.".format(role, ctx.message.author.mention))
+            await client.add_roles(ctx.message.author, role)
+            return await client.say("{} role has been added to {}.".format(role, ctx.message.author.mention))
 
         if role in ctx.message.author.roles:
-            await self.bot.remove_roles(ctx.message.author, role)
-            return await self.bot.say("{} role has been removed from {}."
+            await client.remove_roles(ctx.message.author, role)
+            return await client.say("{} role has been removed from {}."
                                       .format(role, ctx.message.author.mention))
 client.run(os.getenv('Token'))
