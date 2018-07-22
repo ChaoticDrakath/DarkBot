@@ -230,7 +230,7 @@ async def rules(ctx, *, msg = None):
     await client.delete_message(ctx.message)
 
     if not msg: await client.say("Please specify a user to warn")
-    else: await client.say(msg)
+    else: await client.say(msg + '')
     return
     
 client.run(os.getenv('Token'))
