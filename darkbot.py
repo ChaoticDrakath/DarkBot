@@ -186,8 +186,8 @@ async def dm(ctx, member: discord.Member , msg = None):
     await client.send_message(member, msg)
     return
 
- @client.command(pass_context=True)
- @commands.has_permissions(manage_roles=True) 
+@client.command(pass_context=True)
+@commands.has_permissions(manage_roles=True) 
     async def role(self, ctx, *, role: discord.Role = None):
         """
         Toggle whether or not you have a role. Usage: `d!role DivinityPing`. Can take roles with spaces.
