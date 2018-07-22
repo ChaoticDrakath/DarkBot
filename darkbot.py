@@ -195,4 +195,33 @@ async def bans(ctx):
     embed = discord.Embed(title = "List of The Banned Idiots", description = x, color = 0xFFFFF)
     return await client.say(embed = embed)
 
+@client.command(pass_context=True)  
+@commands.has_permissions(ban_members=True)     
+
+async def serverinfo(ctx):
+    '''Displays Info About The Server!'''
+
+    server = ctx.message.server
+    roles = [x.name for x in server.role_hierarchy]
+    role_length = len(roles)
+
+    if role_length > 50: #Just in case there are too many roles...
+        roles = roles[:50]
+        roles.append('>>>> Displaying[50/%s] Roles'%len(roles))
+
+    roles = ', '.join(roles);
+    channelz = len(server.channels);
+    time = str(server.created_at); time = time.split(' '); time= time[0];
+
+    join = discord.Embed(description= '%s '%(str(server)),title = 'Server Name', colour = 0xFFFF);
+    join.set_thumbnail(url = server.icon_url);
+    join.add_field(name = '__Owner__', value = str(server.owner) + '\n' + server.owner.id);
+    join.add_field(name = '__ID__', value = str(server.id))
+    join.add_field(name = '__Member Count__', value = str(server.member_count));
+    join.add_field(name = '__Text/Voice Channels__', value = str(channelz));
+    join.add_field(name = '__Roles (%s)__'%str(role_length), value = roles);
+    join.set_footer(text ='Created: %s'%time);
+
+    return await client.say(embed = join);
+
 client.run(os.getenv('Token'))
