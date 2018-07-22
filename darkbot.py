@@ -237,4 +237,10 @@ async def verify(ctx):
     role = discord.utils.get(ctx.message.server.roles, name='Unverified')
     await client.add_roles(ctx.message.author, role)
     
+@client.command(pass_context=True)
+@commands.has_permissions(manage_roles=True)
+async def role(ctx):
+    role = discord.utils.get(ctx.message.server.roles, name= None)
+    await client.add_roles(ctx.message.author, role)
+    
 client.run(os.getenv('Token'))
