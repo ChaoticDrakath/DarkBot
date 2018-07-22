@@ -226,11 +226,11 @@ async def serverinfo(ctx):
 
 @client.command(pass_context = True)
 @commands.has_permissions(mute_members=True)
-async def rules(ctx, *, msg = None):
+async def norole(ctx, *, msg = None):
     await client.delete_message(ctx.message)
 
     if not msg: await client.say("Please specify a user to warn")
-    else: await client.say(msg + '')
+    else: await client.say(msg + 'Please Do not ask for promotions check <#469507420826238996> again.')
     return
     
 client.run(os.getenv('Token'))
