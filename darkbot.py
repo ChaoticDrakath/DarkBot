@@ -164,7 +164,7 @@ async def say(ctx, *, msg = None):
     return
 
 @client.command(pass_context = True)
-@commands.has_permissions(mute_members=True)
+@commands.has_permissions(kick_members=True)
 async def rules(ctx, *, msg = None):
     await client.delete_message(ctx.message)
 
@@ -173,7 +173,7 @@ async def rules(ctx, *, msg = None):
     return
 
 @client.command(pass_context = True)
-@commands.has_permissions(mute_members=True)
+@commands.has_permissions(kick_members=True)
 async def warndm(ctx, member: discord.Member):
     await client.delete_message(ctx.message)
     await client.send_message(member, 'Please Read <#469507420826238996> and never break any one of them again otherwise i will mute/kick/ban you next time.')
@@ -196,7 +196,7 @@ async def bans(ctx):
     return await client.say(embed = embed)
 
 @client.command(pass_context=True)  
-@commands.has_permissions(ban_members=True)     
+@commands.has_permissions(kick_members=True)     
 
 async def serverinfo(ctx):
     '''Displays Info About The Server!'''
@@ -225,7 +225,7 @@ async def serverinfo(ctx):
     return await client.say(embed = join);
 
 @client.command(pass_context = True)
-@commands.has_permissions(mute_members=True)
+@commands.has_permissions(kick_members=True)
 async def norole(ctx, *, msg = None):
     await client.delete_message(ctx.message)
 
