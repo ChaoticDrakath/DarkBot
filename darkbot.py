@@ -231,10 +231,11 @@ async def norole(ctx, *, msg = None):
 async def unverify(ctx):
     role = discord.utils.get(ctx.message.server.roles, name='Unverified')
     await client.add_roles(ctx.message.author, role)
+    await client.remove_roles(ctx.message.author, 'Verified')
     
 @client.command(pass_context=True)
 async def verify(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name='Unverified')
+    role = discord.utils.get(ctx.message.server.roles, name='Verified')
     await client.add_roles(ctx.message.author, role)
     
 client.run(os.getenv('Token'))
