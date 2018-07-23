@@ -17,6 +17,10 @@ async def on_ready():
     print('Created by Utkarsh')
     return await client.change_presence(game=discord.Game(name='Looking for d!help'))
 
+@client.command(pass_context=True)
+async def shutdown():
+	await client.logout()
+
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)     
 async def kick(ctx,user:discord.Member):
