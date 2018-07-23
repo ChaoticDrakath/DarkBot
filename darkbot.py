@@ -18,9 +18,9 @@ async def on_ready():
     return await client.change_presence(game=discord.Game(name='Looking for d!help'))
 
 @client.command(pass_context=True)
-
+@commands.has_permissions(administrator=True) 
 async def shutdown():
-	if message.author == "420525168381657090":
+
 	await client.logout()
 
 @client.command(pass_context=True)  
