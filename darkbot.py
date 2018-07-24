@@ -6,7 +6,7 @@ import platform
 import os
 
 client = Bot(description="DarkBot Bot is best", command_prefix="d!", pm_help = True)
-
+client.remove_command('help')
 newUserMessage = """Welcome to Our Server. Hope you will be active here. Check <#469507420826238996> to know our server rules, and start chatting with others."""
 
  
@@ -31,6 +31,22 @@ async def on_member_leave(member):
      fmt = '{0.mention} just left {1.name}!'
      await client.send_message(server, fmt.format(member, server))
 
+@client.command(pass_context = True)
+async def help(ctx):
+    author = ctx.message.author
+    embed = discord.Embed(colour = discord.Colour.orange())
+    embed.set_author(name='Help')
+    embed.add_field(name = 'd!help ',value ='Explaines all the commands',inline = False)
+    embed.add_field(name = 'd!kick(Mods only)',value ='Use it like ``d!kick @user`` to kick any user',inline = False)
+    embed.add_field(name = 'd!clear(Mods only)',value ='Use it like ``d!clear <number>`` to clear any message',inline = False)
+    embed.add_field(name = 'd!mute(Mods only)',value ='Use it like ``d!mute @user <time>`` to mute any user',inline = False)
+    embed.add_field(name = 'd!unmute(Mods only) ',value ='Use it like ``d!unmute @user`` to unmute anyone',inline = False)
+    embed.add_field(name = 'd!friend(Owners only) ',value ='Use it like ``d!friend @user`` to give anyone friend role',inline = False)
+    embed.add_field(name = 'd!ban(Mods only) ',value ='Use it like ``d!ban @user`` to ban any user',inline = False)
+    embed.add_field(name = 'd!rules(Mods only)',value ='Use it like ``d!rules @user <violation type>`` to warn user',inline = False)
+    embed.add_field(name = 'd!warndm(Mods only)',value ='Use it like ``d!warndm @user <violation type in one word>`` to warn any user in dm',inline = False)
+    embed.add_field(name = 'd!norole(Mods only) ',value ='Use it like ``d!norole @user`` to warn anyone if he/she asks for promotion',inline = False)
+    await client.send_message(author,embed=embed)
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True) 
 async def shutdown():
