@@ -7,7 +7,9 @@ import os
 
 client = Bot(description="DarkBot Bot is best", command_prefix="d!", pm_help = True)
 
-
+newUserMessage = """Welcome to Our Server. Hope you will be active here. Check <#469507420826238996> to know our server rules, and start chatting with others. 
+"""
+ 
 @client.event
 async def on_ready():
     print('Logged in as '+client.user.name+' (ID:'+client.user.id+') | Connected to '+str(len(client.servers))+' servers | Connected to '+str(len(set(client.get_all_members())))+' users')
@@ -16,6 +18,17 @@ async def on_ready():
     print('Started Dark BOT')
     print('Created by Utkarsh')
     return await client.change_presence(game=discord.Game(name='Looking for d!help'))
+ @client.event
+ async def on_member_join(member):
+     print("In our server" + member.name + " joined just joined")
+     await client.send_message(member, newUserMessage)
+     print("Sent message to " + member.name)
+ 
+@client.event
+ async def on_member_leave(member):
+     server = member.server
+     fmt = '{0.mention} just left {1.name}!'
+     await client.send_message(server, fmt.format(member, server))
 
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True) 
