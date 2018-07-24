@@ -50,6 +50,8 @@ async def help(ctx):
     embed = discord.Embed(colour = discord.Colour.orange())
     embed.set_author(name='Help')
     embed.add_field(name = 'd!help ',value ='Explaines all the commands',inline = False)
+	embed.add_field(name = 'd!serverinfo(Mods only) ',value ='Use it like ``d!serverinfo`` to get server info',inline = False)
+	embed.add_field(name = 'd!userinfo ',value ='Use it like ``d!userinfo @user`` to get some basic info of tagged user',inline = False)
     embed.add_field(name = 'd!kick(Mods only)',value ='Use it like ``d!kick @user`` to kick any user',inline = False)
     embed.add_field(name = 'd!clear(Mods only)',value ='Use it like ``d!clear <number>`` to clear any message',inline = False)
     embed.add_field(name = 'd!mute(Mods only)',value ='Use it like ``d!mute @user <time>`` to mute any user',inline = False)
