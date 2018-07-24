@@ -20,13 +20,13 @@ async def on_ready():
     return await client.change_presence(game=discord.Game(name='Looking for d!help'))
 
 @client.event
- async def on_member_join(member):
+async def on_member_join(member):
      print("In our server" + member.name + " joined just joined")
      await client.send_message(member, newUserMessage)
      print("Sent message to " + member.name)
  
 @client.event
- async def on_member_leave(member):
+async def on_member_leave(member):
      server = member.server
      fmt = '{0.mention} just left {1.name}!'
      await client.send_message(server, fmt.format(member, server))
