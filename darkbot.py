@@ -257,4 +257,10 @@ async def verify(ctx):
     role = discord.utils.get(ctx.message.server.roles, name='Verified')
     await client.add_roles(ctx.message.author, role)
     
+@client.command(pass_context=True)
+@commands.has_permissions(administrator=True)
+async def friend(ctx, user:discord.Member,):
+    role = discord.utils.get(ctx.message.server.roles, name='Friend of Owner')
+    await client.add_roles(ctx.message.mentions[0], role)
+   await client.send_message(member, ', Congo you got Friend of Owner role in Our server.')
 client.run(os.getenv('Token'))
