@@ -4,9 +4,7 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import platform
 import os
-import json
-import os.path
-client1 = discord.Client()
+
 client = Bot(description="DarkBot Bot is best", command_prefix="d!", pm_help = True)
 client.remove_command('help')
 newUserMessage = """Welcome to Our Server. Hope you will be active here. Check <#469507420826238996> to know our server rules, and start chatting with others."""
@@ -21,44 +19,6 @@ async def on_ready():
     print('Created by Utkarsh')
     return await client.change_presence(game=discord.Game(name='Looking for d!help'))
 
-@client1.event
-async def on_message(message):
-
-    if message.content.lower().startswith('d!xp'):
-        await client.send_message(message.channel, "You have `{}` XP!".format(get_xp(message.author.id)))
-
-    user_add_xp(message.author.id, 2)
-
-
-def user_add_xp(user_id: int, xp: int):
-    if os.path.isfile("users.json"):
-        try:
-            with open('users.json', 'r') as fp:
-                users = json.load(fp)
-            users[user_id]['xp'] += xp
-            with open('users.json', 'w') as fp:
-                json.dump(users, fp, sort_keys=True, indent=4)
-        except KeyError:
-            with open('users.json', 'r') as fp:
-                users = json.load(fp)
-            users[user_id] = {}
-            users[user_id]['xp'] = xp
-            with open('users.json', 'w') as fp:
-                json.dump(users, fp, sort_keys=True, indent=4)
-    else:
-        users = {user_id: {}}
-        users[user_id]['xp'] = xp
-        with open('users.json', 'w') as fp:
-            json.dump(users, fp, sort_keys=True, indent=4)
-
-
-def get_xp(user_id: int):
-    if os.path.isfile('users.json'):
-        with open('users.json', 'r') as fp:
-            users = json.load(fp)
-        return users[user_id]['xp']
-    else:
-        return 0
 
 @client.event
 async def on_member_join(member):
