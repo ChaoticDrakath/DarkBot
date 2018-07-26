@@ -51,6 +51,7 @@ async def help(ctx):
     embed = discord.Embed(colour = discord.Colour.orange())
     embed.set_author(name='Help')
     embed.add_field(name = 'd!help ',value ='Explaines all the commands',inline = False)
+    embed.add_field(name = 'd!english ',value ='Use it like ``d!english @user`` when someone speaks languages other than English.',inline = False)
     embed.add_field(name = 'd!serverinfo(Mods only) ',value ='Use it like ``d!serverinfo`` to get server info',inline = False)
     embed.add_field(name = 'd!userinfo(Mods only) ',value ='Use it like ``d!userinfo @user`` to get some basic info of tagged user',inline = False)
     embed.add_field(name = 'd!kick(Mods only)',value ='Use it like ``d!kick @user`` to kick any user',inline = False)
@@ -285,7 +286,7 @@ async def english(ctx, *, msg = None):
     await client.delete_message(ctx.message)
 
     if not msg: await client.say("Please specify a user to warn")
-    else: await client.say(msg + ', Please do not use languages other than **English**,check <#469507420826238996> again and do not try to break any of them')
+    else: await client.say(msg + ', Please do not use languages other than **English.**')
     return
     
 @client.command(pass_context=True)
