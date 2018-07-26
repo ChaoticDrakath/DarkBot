@@ -25,6 +25,11 @@ async def on_member_join(member):
      print("In our server" + member.name + " joined just joined")
      await client.send_message(member, newUserMessage)
      print("Sent message to " + member.name)
+ @client.event
+async def on_member_remove(member):
+    serverchannel = member.server.default_channel
+    msg = "Bye Bye {0}! We will miss you :(. ".format(member.mention)
+    await client.send_message(serverchannel, msg)
  
 @client.event
 async def on_member_leave(member):
