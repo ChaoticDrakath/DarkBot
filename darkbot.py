@@ -39,7 +39,6 @@ async def on_member_leave(member):
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)     
-
 async def userinfo(ctx, user: discord.Member):
     embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color=0x00ff00)
     embed.add_field(name="Name", value=user.name, inline=True)
@@ -72,7 +71,7 @@ async def help(ctx):
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True) 
 async def shutdown():
-
+        await client.delete_message(ctx.message)
 	await client.logout()
 
 @client.command(pass_context=True)  
@@ -81,16 +80,21 @@ async def kick(ctx,user:discord.Member):
 
     if ctx.message.author.server_permissions.kick_members: 
         await client.say('==>')      
-        
+        await client.delete_message(ctx.message)
+
     try:
         await client.kick(user)
         await client.say(user.name+' was kicked?  Good bye '+user.name+'!')
+        await client.delete_message(ctx.message)
+
 
     except discord.Forbidden:
         await client.say('Permission denied.')
         return
     except discord.HTTPException:
         await client.say('kick failed.')
+	await client.delete_message(ctx.message)
+
         return		 	
 
 @client.command(pass_context = True)
@@ -124,7 +128,9 @@ async def clear(ctx, number):
 async def mute(ctx,user:discord.Member):
     if ctx.message.author.server_permissions.mute_members: 
              
-       role = discord.utils.get(ctx.message.server.roles,name='Muted')        
+       role = discord.utils.get(ctx.message.server.roles,name='Muted')  
+        await client.delete_message(ctx.message)
+
     try:
         await client.add_roles(ctx.message.mentions[0], role)	 		
         await client.say('Muted '+user.name+' :mute: ')
@@ -146,7 +152,9 @@ async def mute(ctx,user:discord.Member):
 async def unmute(ctx,user:discord.Member):
     if ctx.message.author.server_permissions.mute_members: 
              
-       role = discord.utils.get(ctx.message.server.roles,name='Muted')        
+       role = discord.utils.get(ctx.message.server.roles,name='Muted')       
+        await client.delete_message(ctx.message)
+
     try:
         await client.remove_roles(ctx.message.mentions[0], role)	 		
         await client.say('Unmuted '+user.name+' :rofl: ')
@@ -166,7 +174,8 @@ async def ban(ctx,user:discord.Member):
 
     if ctx.message.author.server_permissions.ban_members: 
         await client.say('==>')      
-        
+        await client.delete_message(ctx.message)
+
     try:
         await client.ban(user)
         await client.say(user.name+' was banned. Good bye '+user.name+'!')
@@ -187,6 +196,7 @@ async def ban(ctx,user:discord.Member):
 
 async def unban(ctx):
     ban_list = await client.get_bans(ctx.message.server)
+    await client.delete_message(ctx.message)
 
     # Show banned users
     await client.say("Ban list:\n{}".format("\n".join([user.name for user in ban_list])))
@@ -296,17 +306,20 @@ async def english(ctx, *, msg = None):
     
 @client.command(pass_context=True)
 async def unverify(ctx):
+    await client.delete_message(ctx.message)
     role = discord.utils.get(ctx.message.server.roles, name='Unverified')
     await client.add_roles(ctx.message.author, role)
     
 @client.command(pass_context=True)
 async def verify(ctx):
+    await client.delete_message(ctx.message)
     role = discord.utils.get(ctx.message.server.roles, name='Verified')
     await client.add_roles(ctx.message.author, role)
     
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
 async def friend(ctx, user:discord.Member,):
+    await client.delete_message(ctx.message)
     role = discord.utils.get(ctx.message.server.roles, name='Friend of Owner')
     await client.add_roles(ctx.message.mentions[0], role)
     
