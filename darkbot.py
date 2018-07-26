@@ -68,10 +68,10 @@ async def help(ctx):
     embed.add_field(name = 'd!warndm(Mods only)',value ='Use it like ``d!warndm @user <violation type in one word>`` to warn any user in dm',inline = False)
     embed.add_field(name = 'd!norole(Mods only) ',value ='Use it like ``d!norole @user`` to warn anyone if he/she asks for promotion',inline = False)
     await client.send_message(author,embed=embed)
+
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True) 
 async def shutdown():
-        await client.delete_message(ctx.message)
 	await client.logout()
 
 @client.command(pass_context=True)  
