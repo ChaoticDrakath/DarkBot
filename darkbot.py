@@ -149,7 +149,6 @@ async def unmute(ctx,user:discord.Member):
     if ctx.message.author.server_permissions.mute_members: 
              
        role = discord.utils.get(ctx.message.server.roles,name='Muted')       
-        await client.delete_message(ctx.message)
 
     try:
         await client.remove_roles(ctx.message.mentions[0], role)	 		
@@ -170,7 +169,6 @@ async def ban(ctx,user:discord.Member):
 
     if ctx.message.author.server_permissions.ban_members: 
         await client.say('==>')      
-        await client.delete_message(ctx.message)
 
     try:
         await client.ban(user)
@@ -192,7 +190,6 @@ async def ban(ctx,user:discord.Member):
 
 async def unban(ctx):
     ban_list = await client.get_bans(ctx.message.server)
-    await client.delete_message(ctx.message)
 
     # Show banned users
     await client.say("Ban list:\n{}".format("\n".join([user.name for user in ban_list])))
