@@ -93,7 +93,6 @@ async def kick(ctx,user:discord.Member):
         return
     except discord.HTTPException:
         await client.say('kick failed.')
-	await client.delete_message(ctx.message)
 
         return		 	
 
