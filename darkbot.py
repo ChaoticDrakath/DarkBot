@@ -93,7 +93,6 @@ async def kick(ctx,user:discord.Member):
         return
     except discord.HTTPException:
         await client.say('kick failed.')
-
         return		 	
 
 @client.command(pass_context = True)
@@ -128,8 +127,6 @@ async def mute(ctx,user:discord.Member):
     if ctx.message.author.server_permissions.mute_members: 
              
        role = discord.utils.get(ctx.message.server.roles,name='Muted')  
-        await client.delete_message(ctx.message)
-
     try:
         await client.add_roles(ctx.message.mentions[0], role)	 		
         await client.say('Muted '+user.name+' :mute: ')
