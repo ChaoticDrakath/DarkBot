@@ -7,7 +7,7 @@ import os
 
 client = Bot(description="DarkBot Bot is best", command_prefix="d!", pm_help = True)
 client.remove_command('help')
-newUserMessage = """Welcome to Our Server. Hope you will be active here. Check <#469507420826238996> to know our server rules, and start chatting with others."""
+newUserMessage = """Welcome to Our Server. Hope you will be active here. Check Our server rules and never try to break any rules."""
 
  
 @client.event
@@ -164,7 +164,7 @@ async def ban(ctx,user:discord.Member):
         
     try:
         await client.ban(user)
-        await client.say(user.name+' was banned ?  Good bye '+user.name+'!')
+        await client.say(user.name+' was banned. Good bye '+user.name+'!')
 
     except discord.Forbidden:
 
@@ -216,7 +216,7 @@ async def rules(ctx, *, msg = None):
     await client.delete_message(ctx.message)
 
     if not msg: await client.say("Please specify a user to warn")
-    else: await client.say(msg + ', Please Read <#469507420826238996> and never break any one of them again otherwise i will mute/kick/ban you next time.')
+    else: await client.say(msg + ', Please Read Rules again and never break any one of them again otherwise i will mute/kick/ban you next time.')
     return
 
 @client.command(pass_context = True)
@@ -277,7 +277,7 @@ async def norole(ctx, *, msg = None):
     await client.delete_message(ctx.message)
 
     if not msg: await client.say("Please specify a user to warn")
-    else: await client.say(msg + ', Please Do not ask for promotions check <#469507420826238996> again.')
+    else: await client.say(msg + ', Please Do not ask for promotions check Rules again.')
     return
 
 @client.command(pass_context = True)
