@@ -9,7 +9,7 @@ client = Bot(description="DarkBot Bot is best", command_prefix="d!", pm_help = T
 client.remove_command('help')
 newUserMessage = """Welcome to Our Server. Hope you will be active here. Check Our server rules and never try to break any rules."""
 
- 
+
 @client.event
 async def on_ready():
     print('Logged in as '+client.user.name+' (ID:'+client.user.id+') | Connected to '+str(len(client.servers))+' servers | Connected to '+str(len(set(client.get_all_members())))+' users')
@@ -19,6 +19,13 @@ async def on_ready():
     print('Created by Utkarsh')
     return await client.change_presence(game=discord.Game(name='Looking for d!help'))
 
+def is_owner(ctx):
+    return ctx.message.author.id == "420525168381657090"
+
+@client.command(pass_context = True)
+@commands.check(is_owner)
+async def shutdown():
+    await client.logout()
 
 @client.event
 async def on_member_join(member):
@@ -76,10 +83,6 @@ async def help(ctx):
     embed.add_field(name = 'd!norole(Mods only) ',value ='Use it like ``d!norole @user`` to warn anyone if he/she asks for promotion',inline = False)
     await client.send_message(author,embed=embed)
 
-@client.command(pass_context=True)
-@commands.has_permissions(administrator=True) 
-async def shutdown():
-	await client.logout()
 
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)     
