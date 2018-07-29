@@ -29,7 +29,7 @@ async def shutdown():
 
 @client.event
 async def on_member_join(member):
-     print("In our server" + member.name + " joined just joined")
+     print("In our server" + member.name + " just joined")
      await client.send_message(member, newUserMessage)
      print("Sent message to " + member.name)
 @client.event
