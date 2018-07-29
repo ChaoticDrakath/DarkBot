@@ -59,7 +59,7 @@ async def userinfo(ctx, user: discord.Member):
 @client.command(pass_context = True)
 async def help(ctx):
     author = ctx.message.author
-    embed = discord.Embed(colour = discord.Colour.orange())
+    embed = discord.Embed(colour = discord.Colour.red())
     embed.set_author(name='Help')
     embed.add_field(name = 'd!help ',value ='Explaines all the commands',inline = False)
     embed.add_field(name = 'd!authlink ',value ='Use it to get authorizing link to authorize this bot to your server.',inline = False)
