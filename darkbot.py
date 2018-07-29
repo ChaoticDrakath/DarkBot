@@ -315,5 +315,12 @@ async def friend(ctx, user:discord.Member,):
     await client.delete_message(ctx.message)
     role = discord.utils.get(ctx.message.server.roles, name='Friend of Owner')
     await client.add_roles(ctx.message.mentions[0], role)
+
+@client.command(pass_context=True)
+@commands.has_permissions(administrator=True)
+async def makemod(ctx, user:discord.Member,):
+    await client.delete_message(ctx.message)
+    role = discord.utils.get(ctx.message.server.roles, name='Moderator')
+    await client.add_roles(ctx.message.mentions[0], role)
     
 client.run(os.getenv('Token'))
