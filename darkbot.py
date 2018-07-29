@@ -99,7 +99,7 @@ async def kick(ctx,user:discord.Member):
 
     try:
         await client.kick(user)
-        await client.say(user.name+' was kicked?  Good bye '+user.name+'!')
+        await client.say(user.name+' was kicked. Good bye '+user.name+'!')
         await client.delete_message(ctx.message)
 
 
