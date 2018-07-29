@@ -71,6 +71,7 @@ async def help(ctx):
     embed.add_field(name = 'd!friend(Owners only) ',value ='Use it like ``d!friend @user`` to give anyone Friend of Owner role',inline = False)
     embed.add_field(name = 'd!ban(Mods only) ',value ='Use it like ``d!ban @user`` to ban any user',inline = False)
     embed.add_field(name = 'd!rules(Mods only)',value ='Use it like ``d!rules @user <violation type>`` to warn user',inline = False)
+    embed.add_field(name = 'd!verify ',value ='Use it to get verified role. Note- It needs proper setup.',inline = False)
     embed.add_field(name = 'd!warndm(Mods only)',value ='Use it like ``d!warndm @user <violation type in one word>`` to warn any user in dm',inline = False)
     embed.add_field(name = 'd!norole(Mods only) ',value ='Use it like ``d!norole @user`` to warn anyone if he/she asks for promotion',inline = False)
     await client.send_message(author,embed=embed)
