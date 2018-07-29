@@ -3,6 +3,8 @@ import asyncio
 from discord.ext.commands import Bot
 from discord.ext import commands
 import platform
+import colorsys
+import random
 import os
 
 client = Bot(description="DarkBot Bot is best", command_prefix="d!", pm_help = True)
@@ -47,7 +49,8 @@ async def on_member_leave(member):
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)     
 async def userinfo(ctx, user: discord.Member):
-    embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color=0x00ff00)
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color = discord.Color((r << 16) + (g << 8) + b)))
     embed.add_field(name="Name", value=user.name, inline=True)
     embed.add_field(name="ID", value=user.id, inline=True)
     embed.add_field(name="Status", value=user.status, inline=True)
@@ -59,7 +62,8 @@ async def userinfo(ctx, user: discord.Member):
 @client.command(pass_context = True)
 async def help(ctx):
     author = ctx.message.author
-    embed = discord.Embed(colour = discord.Colour.red())
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
     embed.set_author(name='Help')
     embed.add_field(name = 'd!help ',value ='Explaines all the commands',inline = False)
     embed.add_field(name = 'd!authlink ',value ='Use it to get authorizing link to authorize this bot to your server.',inline = False)
@@ -278,8 +282,8 @@ async def serverinfo(ctx):
     roles = ', '.join(roles);
     channelz = len(server.channels);
     time = str(server.created_at); time = time.split(' '); time= time[0];
-
-    join = discord.Embed(description= '%s '%(str(server)),title = 'Server Name', colour = 0xFFFF);
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    join = discord.Embed(description= '%s '%(str(server)),title = 'Server Name', color = discord.Color((r << 16) + (g << 8) + b)));
     join.set_thumbnail(url = server.icon_url);
     join.add_field(name = '__Owner__', value = str(server.owner) + '\n' + server.owner.id);
     join.add_field(name = '__ID__', value = str(server.id))
