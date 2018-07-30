@@ -34,12 +34,20 @@ async def on_member_join(member):
      print("In our server" + member.name + " just joined")
      await client.send_message(member, newUserMessage)
      print("Sent message to " + member.name)
+
 @client.event
 async def on_member_remove(member):
     serverchannel = member.server.default_channel
     msg = "Bye Bye {0}! We will miss you :(. ".format(member.mention)
     await client.send_message(serverchannel, msg)
- 
+
+@client.event
+async def on_member_join(member):
+    if member.server.id == "404622530129690624":
+     print("In our server" + member.name + " just joined")
+     nickname = '+GGC | ' + member.name
+     await client.change_nickname(member, nickname)
+
 @client.event
 async def on_member_leave(member):
      server = member.server
