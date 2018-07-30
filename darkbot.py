@@ -89,6 +89,7 @@ async def help(ctx):
     embed.add_field(name = 'd!removemod(Admins Only)',value ='Use it like ``d!removemod @user`` to remove him from mod. Note-You need Moderator role in your server below darkbot to use it.',inline = False)
     embed.add_field(name = 'd!makemod(Admins Only)',value ='Use it like ``d!makemod @user`` to make him mod. Note-You need Moderator role in your server below darkbot to use it.',inline = False)
     embed.add_field(name = 'd!friend(Owners only) ',value ='Use it like ``d!friend @user`` to give anyone Friend of Owner role',inline = False)
+    embed.add_field(name = 'd!setnick(Mods only)',value ='Use it like ``d!setnick @user <New nickname>`` to change the nickname of tagged user.',inline = False)
     embed.add_field(name = 'd!english(Mods only)',value ='Use it like ``d!english @user`` when someone speaks languages other than English.',inline = False)
     embed.add_field(name = 'd!serverinfo(Mods only) ',value ='Use it like ``d!serverinfo`` to get server info',inline = False)
     embed.add_field(name = 'd!userinfo(Mods only) ',value ='Use it like ``d!userinfo @user`` to get some basic info of tagged user',inline = False)
