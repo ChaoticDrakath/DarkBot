@@ -74,7 +74,7 @@ async def setnick(ctx, user: discord.Member, *, nickname):
     await client.delete_message(ctx.message)
 
 @client.command(pass_context=True)
-@commands.has_permissions(manage_roles=True)     
+@commands.has_permissions(kick_members=True)     
 async def poll(ctx, question, *options: str):
         if len(options) <= 1:
             await client.say('You need more than one option to make a poll!')
@@ -122,7 +122,7 @@ async def help(ctx):
     embed.add_field(name = 'd!removemod(Admins Only)',value ='Use it like ``d!removemod @user`` to remove him from mod. Note-You need Moderator role in your server below darkbot to use it.',inline = False)
     embed.add_field(name = 'd!makemod(Admins Only)',value ='Use it like ``d!makemod @user`` to make him mod. Note-You need Moderator role in your server below darkbot to use it.',inline = False)
     embed.add_field(name = 'd!friend(Owners only) ',value ='Use it like ``d!friend @user`` to give anyone Friend of Owner role',inline = False)
-    embed.add_field(name = 'd!poll(SeniorMods only) ',value ='Use it like ``d!poll "Question" "Option1" "Option2" ..... "Option9"``.',inline = False)
+    embed.add_field(name = 'd!poll(Mods only) ',value ='Use it like ``d!poll "Question" "Option1" "Option2" ..... "Option9"``.',inline = False)
     embed.add_field(name = 'd!setnick(Mods only)',value ='Use it like ``d!setnick @user <New nickname>`` to change the nickname of tagged user.',inline = False)
     embed.add_field(name = 'd!english(Mods only)',value ='Use it like ``d!english @user`` when someone speaks languages other than English.',inline = False)
     embed.add_field(name = 'd!serverinfo(Mods only) ',value ='Use it like ``d!serverinfo`` to get server info',inline = False)
