@@ -74,6 +74,13 @@ async def setnick(ctx, user: discord.Member, *, nickname):
     await client.delete_message(ctx.message)
 
 @client.command(pass_context = True)
+async def googlefy(ctx, *, msg = None):
+    if not msg: await client.say("Please specify a string")
+    else:
+        await client.say('http://lmgtfy.com/?q=' + msg)
+    return
+
+@client.command(pass_context = True)
 async def help(ctx):
     author = ctx.message.author
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
