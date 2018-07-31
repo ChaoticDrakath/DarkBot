@@ -74,6 +74,7 @@ async def setnick(ctx, user: discord.Member, *, nickname):
     await client.delete_message(ctx.message)
 
 @client.command(pass_context=True)
+@commands.has_permissions(manage_roles=True)     
 async def poll(ctx, question, *options: str):
         if len(options) <= 1:
             await client.say('You need more than one option to make a poll!')
