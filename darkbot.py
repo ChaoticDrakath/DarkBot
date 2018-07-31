@@ -73,6 +73,30 @@ async def setnick(ctx, user: discord.Member, *, nickname):
     await client.change_nickname(user, nickname)
     await client.delete_message(ctx.message)
 
+@client.command(pass_context=True)
+async def poll(ctx, question, *options: str):
+        if len(options) <= 1:
+            await client.say('You need more than one option to make a poll!')
+            return
+        if len(options) > 10:
+            await client.say('You cannot make a poll for more than 10 things!')
+            return
+
+        if len(options) == 2 and options[0] == 'yes' and options[1] == 'no':
+            reactions = ['?', '?']
+        else:
+            reactions = ['1\u20e3', '2\u20e3', '3\u20e3', '4\u20e3', '5\u20e3', '6\u20e3', '7\u20e3', '8\u20e3', '9\u20e3', '\U0001f51f']
+
+        description = []
+        for x, option in enumerate(options):
+            description += '\n {} {}'.format(reactions[x], option)
+        embed = discord.Embed(title=question, description=''.join(description))
+        react_message = await client.say(embed=embed)
+        for reaction in reactions[:len(options)]:
+            await client.add_reaction(react_message, reaction)
+        embed.set_footer(text='Poll ID: {}'.format(react_message.id))
+        await client.edit_message(react_message, embed=embed)
+        
 @client.command(pass_context = True)
 async def googlefy(ctx, *, msg = None):
     if not msg: await client.say("Please specify a string")
@@ -91,6 +115,7 @@ async def help(ctx):
     embed.add_field(name = 'd!xp ',value ='Use it to check your chatting experience',inline = False)
     embed.add_field(name = 'd!technews ',value ='Use it to get tech news',inline = False)
     embed.add_field(name = 'd!googlefy ',value ='Use it like ``d!googlegy <string>``.',inline = False)
+    embed.add_field(name = 'd!poll ',value ='Use it like ``d!poll "Question" "Option1" "Option2" ..... "Option9"``.',inline = False)
     embed.add_field(name = 'd!spacenews ',value ='Use it to get space news',inline = False)
     embed.add_field(name = 'd!phynews ',value ='Use it to get physycs',inline = False)
     embed.add_field(name = 'd!verify ',value ='Use it to get verified role. Note- It needs proper setup.',inline = False)
