@@ -31,8 +31,8 @@ async def shutdown():
 @client.command(pass_context = True)
 @commands.check(is_owner)
 async def leave():
-    to_leave = client.get_server(id)
-    await client.leave_server(to_leave)
+
+    await client.leave_server()
 
 
 @client.event
