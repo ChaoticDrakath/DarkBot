@@ -69,6 +69,40 @@ async def userinfo(ctx, user: discord.Member):
     embed.set_thumbnail(url=user.avatar_url)
     await client.say(embed=embed)
 
+    
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)
+async def setup(ctx):
+    author = ctx.message.author
+    server = ctx.message.server
+    mod_perms = discord.Permissions(manage_messages=True, kick_members=True, manage_nicknames =True,mute_members=True)
+    admin_perms = discord.Permissions(ADMINISTRATOR=True)
+    smod_perms = discord.Permissions(manage_messages=True, kick_members=True, manage_nicknames =True,mute_members=True,VIEW_AUDIT_LOG=True,MANAGE_ROLES=True)
+    await client.create_role(author.server, name="Owner", permissions=admin_perms)
+    await client.create_role(author.server, name="Admin", permissions=admin_perms)
+    await client.create_role(author.server, name="Senior Moderator", permissions=smod_perms)
+    await client.create_role(author.server, name="G.O.H")
+    await client.create_role(author.server, name="Moderator", permissions=mod_perms)
+    await client.create_role(author.server, name="Muted")
+    await client.create_role(author.server, name="Trial Moderator" parmissions=mod_perms)
+    await client.create_role(author.server, name="Friend of Owner")
+    await client.create_role(author.server, name="Verified")
+    everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
+    everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
+    user_perms = discord.PermissionOverwrite(read_messages=True)
+    user = discord.ChannelPermissions(target=server.default_role, overwrite=user_perms)
+    private_perms = discord.PermissionOverwrite(read_messages=False)
+    private = discord.ChannelPermissions(target=server.default_role, overwrite=private_perms)    
+    await client.create_channel(server, 'welcome',everyone)
+    await client.create_channel(server, 'rules',everyone)
+    await client.create_channel(server, 'announcements',everyone)
+    await client.create_channel(server, 'featured_content',everyone)
+    await client.create_channel(server, 'chatting_here',user)
+    await client.create_channel(server, 'bots_zone',user)
+    await client.create_channel(server, 'private_chat',private)
+    await client.create_channel(server, 'Music Zone', type=discord.ChannelType.voice)
+    await client.create_channel(server, 'music_commands',user)
+    
 @client.command(pass_context = True)
 @commands.has_permissions(manage_nicknames=True)     
 async def setnick(ctx, user: discord.Member, *, nickname):
