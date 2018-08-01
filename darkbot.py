@@ -77,10 +77,10 @@ async def setup(ctx):
     server = ctx.message.server
     mod_perms = discord.Permissions(manage_messages=True, kick_members=True, manage_nicknames =True,mute_members=True)
     admin_perms = discord.Permissions(ADMINISTRATOR=True)
-    smod_perms = discord.Permissions(manage_messages=True, kick_members=True, manage_nicknames =True,mute_members=True,VIEW_AUDIT_LOG=True,MANAGE_ROLES=True)
+
     await client.create_role(author.server, name="Owner", permissions=admin_perms)
     await client.create_role(author.server, name="Admin", permissions=admin_perms)
-    await client.create_role(author.server, name="Senior Moderator", permissions=smod_perms)
+    await client.create_role(author.server, name="Senior Moderator", permissions=mod_perms)
     await client.create_role(author.server, name="G.O.H")
     await client.create_role(author.server, name="Moderator", permissions=mod_perms)
     await client.create_role(author.server, name="Muted")
