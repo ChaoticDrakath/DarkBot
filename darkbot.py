@@ -84,7 +84,7 @@ async def setup(ctx):
     await client.create_role(author.server, name="G.O.H")
     await client.create_role(author.server, name="Moderator", permissions=mod_perms)
     await client.create_role(author.server, name="Muted")
-    await client.create_role(author.server, name="Trial Moderator" parmissions=mod_perms)
+    
     await client.create_role(author.server, name="Friend of Owner")
     await client.create_role(author.server, name="Verified")
     everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
