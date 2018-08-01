@@ -28,6 +28,10 @@ def is_owner(ctx):
 @commands.check(is_owner)
 async def shutdown():
     await client.logout()
+async def leave():
+    to_leave = client.get_server(id)
+    await client.leave_server(to_leave)
+
 
 @client.event
 async def on_member_join(member):
