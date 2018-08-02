@@ -51,6 +51,20 @@ async def on_member_join(member):
      await client.change_nickname(member, nickname)
 
 @client.event
+async def on_member_join(member):
+    if member.server.id == "452760180648837140":
+     print("In our server" + member.name + " just joined")
+     nickname = '[UTG]' + member.name
+     await client.change_nickname(member, nickname)
+    
+@client.event
+async def on_member_join(member):
+    if member.server.id == "450901954105966592":
+     print("In our server" + member.name + " just joined")
+     nickname = '[GOG]' + member.name
+     await client.change_nickname(member, nickname)
+    
+@client.event
 async def on_member_leave(member):
      server = member.server
      fmt = '{0.mention} just left {1.name}!'
