@@ -163,6 +163,7 @@ async def help(ctx):
     embed.add_field(name = 'd!verify ',value ='Use it to get verified role. Note- It needs proper setup.',inline = False)
     embed.add_field(name = 'd!removemod(Admins Only)',value ='Use it like ``d!removemod @user`` to remove him from mod. Note-You need Moderator role in your server below darkbot to use it.',inline = False)
     embed.add_field(name = 'd!makemod(Admins Only)',value ='Use it like ``d!makemod @user`` to make him mod. Note-You need Moderator role in your server below darkbot to use it.',inline = False)
+    embed.add_field(name = 'd!setup(Admins Only)',value ='Use it to add channels, voice channels and roles if your server is not developed currently and you have just 1-2 channels. Note- Use it only 1 time. If you will use same command again then it will do same thing again .i.e It will add true copy of previous channels + true copy of roles that made in previous command use. So be careful.',inline = False)
     embed.add_field(name = 'd!friend(Owners only) ',value ='Use it like ``d!friend @user`` to give anyone Friend of Owner role',inline = False)
     embed.add_field(name = 'd!poll(Mods only) ',value ='Use it like ``d!poll "Question" "Option1" "Option2" ..... "Option9"``.',inline = False)
     embed.add_field(name = 'd!setnick(Mods only)',value ='Use it like ``d!setnick @user <New nickname>`` to change the nickname of tagged user.',inline = False)
