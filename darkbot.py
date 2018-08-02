@@ -342,13 +342,6 @@ async def warndm(ctx, member: discord.Member):
     return
 
 @client.command(pass_context = True)
-@commands.has_permissions(administrator=True)
-async def dm(ctx, member: discord.Member , msg = None):
-    await client.delete_message(ctx.message)
-    await client.send_message(member, msg)
-    return
-
-@client.command(pass_context = True)
 @commands.has_permissions(administrator=True) 
 async def bans(ctx):
     '''Gets A List Of Users Who Are No Longer With us'''
