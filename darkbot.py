@@ -36,13 +36,7 @@ async def on_member_join(member):
      print("In our server" + member.name + " just joined")
      await client.send_message(member, newUserMessage)
      print("Sent message to " + member.name)
-
-@client.event
-async def on_member_remove(member):
-    serverchannel = member.server.default_channel
-    msg = "Bye Bye {0}! We will miss you :(. ".format(member.mention)
-    await client.send_message(serverchannel, msg)
-
+        
 @client.event
 async def on_member_join(member):
     if member.server.id == "404622530129690624":
@@ -64,12 +58,6 @@ async def on_member_join(member):
      nickname = '[GOG]' + member.name
      await client.change_nickname(member, nickname)
     
-@client.event
-async def on_member_leave(member):
-     server = member.server
-     fmt = '{0.mention} just left {1.name}!'
-     await client.send_message(server, fmt.format(member, server))
-
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)     
 async def userinfo(ctx, user: discord.Member):
