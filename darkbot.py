@@ -36,23 +36,14 @@ async def on_member_join(member):
      print("In our server" + member.name + " just joined")
      await client.send_message(member, newUserMessage)
      print("Sent message to " + member.name)
-        
-@client.event
-async def on_member_join(member):
     if member.server.id == "404622530129690624":
      print("In our server" + member.name + " just joined")
      nickname = '[GGC]' + member.name
      await client.change_nickname(member, nickname)
-
-@client.event
-async def on_member_join(member):
     if member.server.id == "452760180648837140":
      print("In our server" + member.name + " just joined")
      nickname = '[UTG]' + member.name
      await client.change_nickname(member, nickname)
-    
-@client.event
-async def on_member_join(member):
     if member.server.id == "450901954105966592":
      print("In our server" + member.name + " just joined")
      nickname = '[GOG]' + member.name
