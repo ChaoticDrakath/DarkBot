@@ -9,7 +9,6 @@ import os
 
 client = Bot(description="DarkBot Bot is best", command_prefix="d!", pm_help = True)
 client.remove_command('help')
-newUserMessage = """Welcome to Our Server. Hope you will be active here. Check Our server rules and never try to break any rules."""
 
 
 @client.event
@@ -28,14 +27,6 @@ def is_owner(ctx):
 @commands.check(is_owner)
 async def shutdown():
     await client.logout()
-
-
-
-@client.event
-async def on_member_join(member):
-     print("In our server" + member.name + " just joined")
-     await client.send_message(member, newUserMessage)
-     print("Sent message to " + member.name)
 
 @client.event
 async def on_member_join(member):
