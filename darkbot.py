@@ -67,7 +67,23 @@ async def userinfo(ctx, user: discord.Member):
     embed.set_thumbnail(url=user.avatar_url)
     await client.say(embed=embed)
 
-    
+@client.command(pass_context = True)
+@commands.has_permissions(manage_roles=True)     
+async def role(ctx, user: discord.Member, *, role: discord.Role = None):
+        if role is None:
+            return await client.say("You haven't specified a role! ")
+
+        if role not in user.roles:
+            return await client.say("That role doesn't exist.")
+
+        if role not in user.roles:
+            await client.add_roles(user, role)
+            return await client.say("{} role has been added to {}.".format(role, user))
+
+        if role in user.roles:
+            await client.remove_roles(user, role)
+            return await client.say("{} role has been removed from {}.".format(role, user))
+        
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
 async def setup(ctx):
@@ -166,6 +182,7 @@ async def help(ctx):
     embed.add_field(name = 'd!makemod(Admins Only)',value ='Use it like ``d!makemod @user`` to make him mod. Note-You need Moderator role in your server below darkbot to use it.',inline = False)
     embed.add_field(name = 'd!setup(Admins Only)',value ='Use it to add channels, voice channels and roles if your server is not developed currently and you have just 1-2 channels. Note- Use it only 1 time. If you will use same command again then it will do same thing again .i.e It will add true copy of previous channels + true copy of roles that made in previous command use. So be careful.',inline = False)
     embed.add_field(name = 'd!friend(Owners only) ',value ='Use it like ``d!friend @user`` to give anyone Friend of Owner role',inline = False)
+    embed.add_field(name = 'd!role(Senior Mods only)',value ='Use it like ``d!role @user <rolename>``.',inline = False)
     embed.add_field(name = 'd!poll(Mods only) ',value ='Use it like ``d!poll "Question" "Option1" "Option2" ..... "Option9"``.',inline = False)
     embed.add_field(name = 'd!setnick(Mods only)',value ='Use it like ``d!setnick @user <New nickname>`` to change the nickname of tagged user.',inline = False)
     embed.add_field(name = 'd!english(Mods only)',value ='Use it like ``d!english @user`` when someone speaks languages other than English.',inline = False)
