@@ -42,6 +42,8 @@ async def on_member_join(member):
      print("In our server" + member.name + " just joined")
      nickname = '[GOG]' + member.name
      await client.change_nickname(member, nickname)
+    if member.server.id == "450901954105966592":
+     await client.send_message(member,'Also join our Pistol Tournament server - https://discord.gg/eZGr7rD') 
     
 @client.event
 async def on_member_join(member):
@@ -52,6 +54,7 @@ async def on_member_join(member):
     embed.add_field(name = '__Welcome to Our Server__',value ='**Hope you will be active here. Check Our server rules and never try to break any rules. Also join our official server- https://discord.gg/vMvv5rr**',inline = False)
     embed.set_image(url = 'https://media.giphy.com/media/OkJat1YNdoD3W/giphy.gif')
     await client.send_message(member,embed=embed)
+   
     print("Sent message to " + member.name)
     
 @client.command(pass_context = True)
