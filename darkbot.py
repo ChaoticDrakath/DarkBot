@@ -152,6 +152,7 @@ async def help(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
     embed.set_author(name='Help')
+    embed.set_image(url = 'https://en.bloggif.com/tmp/6d95e0bfaf6a494e491d56d942e59875/text.gif?1533362915')
     embed.add_field(name = 'd!help ',value ='Explaines all the commands',inline = False)
     embed.add_field(name = 'd!upvote ',value ='Use it to Upvote our bot and help us to grow',inline = False)
     embed.add_field(name = 'd!authlink ',value ='Use it to get authorizing link to authorize this bot to your server.',inline = False)
