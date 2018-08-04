@@ -166,6 +166,7 @@ async def help(ctx):
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
     embed.set_author(name='Help')
     embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
+    embed.add_field(name = '``Our Help Server Link`` ',value ='https://discord.gg/vMvv5rr',inline = False)
     embed.add_field(name = 'd!help ',value ='Explaines all the commands',inline = False)
     embed.add_field(name = 'd!upvote ',value ='Use it to Upvote our bot and help us to grow',inline = False)
     embed.add_field(name = 'd!authlink ',value ='Use it to get authorizing link to authorize this bot to your server.',inline = False)
