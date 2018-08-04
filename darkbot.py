@@ -74,9 +74,6 @@ async def role(ctx, user: discord.Member, *, role: discord.Role = None):
             return await client.say("You haven't specified a role! ")
 
         if role not in user.roles:
-            return await client.say("That role doesn't exist.")
-
-        if role not in user.roles:
             await client.add_roles(user, role)
             return await client.say("{} role has been added to {}.".format(role, user))
 
