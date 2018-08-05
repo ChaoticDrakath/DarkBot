@@ -83,7 +83,16 @@ async def role(ctx, user: discord.Member, *, role: discord.Role = None):
         if role in user.roles:
             await client.remove_roles(user, role)
             return await client.say("{} role has been removed from {}.".format(role, user))
-        
+ 
+
+@client.command(pass_context=True)
+async def ownerinfo(ctx):
+    embed = discord.Embed(title="Information about owner", description="Bot Name- DarkBot", color=0x00ff00)
+    embed.set_footer(text="Copyright@UK Soft")
+    embed.set_author(name=" Bot Owner Name- DarkLegend")
+    embed.add_field(name="Site- https://bit.ly/darkbotauth", value="Thanks for adding our bot", inline=True)
+    await client.say(embed=embed)
+    
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
 async def setup(ctx):
