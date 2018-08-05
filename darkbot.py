@@ -89,7 +89,7 @@ async def role(ctx, user: discord.Member, *, role: discord.Role = None):
 async def ownerinfo(ctx):
     embed = discord.Embed(title="Information about owner", description="Bot Name- DarkBot", color=0x00ff00)
     embed.set_footer(text="Copyright@UK Soft")
-    embed.set_author(name=" Bot Owner Name- DarkLegend#3807 and |Sunny Singh|™✓#4856\nID:420525168381657090,395535610548322326")
+    embed.set_author(name=" Bot Owner Name- DarkLegend#3807,|Sunny Singh|™✓#4856,Tag<!--Back-->#1488\nID:420525168381657090,395535610548322326,399274658027012098")
     embed.add_field(name="Site- https://bit.ly/darkbotauth", value="Thanks for adding our bot", inline=True)
     await client.say(embed=embed)
     
