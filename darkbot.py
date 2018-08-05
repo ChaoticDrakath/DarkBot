@@ -181,6 +181,7 @@ async def help(ctx):
     embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
     embed.add_field(name = '``Our Help Server Link`` ',value ='https://discord.gg/vMvv5rr',inline = False)
     embed.add_field(name = 'd!help ',value ='Explaines all the commands',inline = False)
+    embed.add_field(name = 'd!guess ',value ='To play guess game',inline = False)
     embed.add_field(name = 'd!donate ',value ='Use it to donate us and get a special post on Official DarkBot server.',inline = False)
     embed.add_field(name = 'd!ownerinfo ',value ='To get basic information about owner.',inline = False)
     embed.add_field(name = 'd!sourcecode ',value ='Use it to see darkbot sourcecode.',inline = False)
