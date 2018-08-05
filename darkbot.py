@@ -89,7 +89,7 @@ async def role(ctx, user: discord.Member, *, role: discord.Role = None):
 async def ownerinfo(ctx):
     embed = discord.Embed(title="Information about owner", description="Bot Name- DarkBot", color=0x00ff00)
     embed.set_footer(text="Copyright@UK Soft")
-    embed.set_author(name=" Bot Owner Name- DarkLegend")
+    embed.set_author(name=" Bot Owner Name- ``DarkLegend#3807``\nID:``420525168381657090``")
     embed.add_field(name="Site- https://bit.ly/darkbotauth", value="Thanks for adding our bot", inline=True)
     await client.say(embed=embed)
     
@@ -181,6 +181,7 @@ async def help(ctx):
     embed.add_field(name = '``Our Help Server Link`` ',value ='https://discord.gg/vMvv5rr',inline = False)
     embed.add_field(name = 'd!help ',value ='Explaines all the commands',inline = False)
     embed.add_field(name = 'd!donate ',value ='Use it to donate us and get a special post on Official DarkBot server.',inline = False)
+    embed.add_field(name = 'd!ownerinfo ',value ='To get basic information about owner.',inline = False)
     embed.add_field(name = 'd!sourcecode ',value ='Use it to see darkbot sourcecode.',inline = False)
     embed.add_field(name = 'd!upvote ',value ='Use it to Upvote our bot and help us to grow',inline = False)
     embed.add_field(name = 'd!authlink ',value ='Use it to get authorizing link to authorize this bot to your server.',inline = False)
