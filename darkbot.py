@@ -439,16 +439,22 @@ async def friend(ctx, user:discord.Member,):
     await client.add_roles(ctx.message.mentions[0], role)
 
 @client.command(pass_context = True)
-@commands.has_permissions(kick_members=True)     
-async def makemod(ctx, user: discord.Member):
+@commands.has_permissions(administrator=True)     
+async def mod(ctx, user: discord.Member):
     nickname = '♏' + user.name
     await client.change_nickname(user, nickname=nickname)
     role = discord.utils.get(ctx.message.server.roles, name='Moderator')
     await client.add_roles(user, role)
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_author(name='Congratulations Message')
+    embed.add_field(name = '__Congratulations__',value ='**Congratulations for mod.Hope you will be more active here. Thanks for your help and support.**',inline = False)
+    embed.set_image(url = 'https://preview.ibb.co/i1izTz/ezgif_5_e20b665628.gif')
+    await client.send_message(user,embed=embed)
     await client.delete_message(ctx.message)
     
 @client.command(pass_context = True)
-@commands.has_permissions(kick_members=True)     
+@commands.has_permissions(administrator=True)     
 async def removemod(ctx, user: discord.Member):
     nickname = user.name
     await client.change_nickname(user, nickname=nickname)
