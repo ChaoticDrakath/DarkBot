@@ -440,7 +440,7 @@ async def friend(ctx, user:discord.Member,):
 
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)     
-async def mod(ctx, user: discord.Member):
+async def makemod(ctx, user: discord.Member):
     nickname = '♏' + user.name
     await client.change_nickname(user, nickname=nickname)
     role = discord.utils.get(ctx.message.server.roles, name='Moderator')
