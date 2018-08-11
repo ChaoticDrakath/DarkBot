@@ -269,13 +269,9 @@ async def kick(ctx,user:discord.Member):
         await client.say(user.name+' was kicked. Good bye '+user.name+'!')
         await client.delete_message(ctx.message)
 
-
     except discord.Forbidden:
         await client.say('Permission denied.')
         return
-    except discord.HTTPException:
-        await client.say('kick failed.')
-        return		 	
 
 @client.command(pass_context = True)
 @commands.has_permissions(manage_messages=True)  
