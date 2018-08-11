@@ -14,7 +14,9 @@ async def status_task():
     while True:
         await client.change_presence(game=discord.Game(name='Looking for d!help'))
         await asyncio.sleep(5)
-        await client.change_presence(game=discord.Game(name='Developing Myself'))
+        await client.change_presence(game=discord.Game(name='Connected to '+str(len(client.servers))+' servers'))
+        await asyncio.sleep(5)
+        await client.change_presence(game=discord.Game(name='Connected to '+str(len(set(client.get_all_members())))+' users'))
         await asyncio.sleep(5)
         
 @client.event
