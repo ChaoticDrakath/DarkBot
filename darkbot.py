@@ -482,13 +482,13 @@ async def reactionroles(ctx, *, msg = None):
 
 @client.command(pass_context = True)
 async def bottutorial(ctx, *, msg = None):
-    if not msg: await client.say("Specify tutorial name correctly")
+    if not msg: await client.say("Tutorial not found or maybe you have mistyped it")
     else: await client.say('https://github.com/uksoftworld/discord.py-tutorial/blob/master/' + msg + '.py')
     return
 
 @client.command(pass_context = True)
 async def dyno(ctx, *, msg = None):
-    if not msg: await client.say("Specify tutorial name correctly")
+    if not msg: await client.say("Command name not found or maybe you have mistyped it")
     else: await client.say('https://github.com/uksoftworld/dynoCC/blob/master/' + msg)
     return
 
