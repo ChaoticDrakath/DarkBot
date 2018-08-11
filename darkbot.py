@@ -470,7 +470,7 @@ async def english(ctx, *, msg = None):
     
 @client.command(pass_context = True)
 async def github(ctx, *, msg = None):
-    if not msg: await client.say("Please specify respo. ``Format- https://github.com/uksoftworld/DarkBot/edit/master/darkbot.py``")
+    if not msg: await client.say("Please specify respo. ``Format- https://github.com/uksoftworld/DarkBot``")
     else: await client.say('https://github.com/' + msg)
     return
 
@@ -480,6 +480,17 @@ async def reactionroles(ctx, *, msg = None):
     else: await client.say('Check this video to setup YAGPDB BOT- https://www.youtube.com/watch?v=icAqiw6txRQ ' + msg)
     return
 
+@client.command(pass_context = True)
+async def bottutorial(ctx, *, msg = None):
+    if not msg: await client.say("Specify tutorial name correctly")
+    else: await client.say('https://github.com/uksoftworld/discord.py-tutorial/blob/master/' + msg)
+    return
+
+@client.command(pass_context = True)
+async def dyno(ctx, *, msg = None):
+    if not msg: await client.say("Specify tutorial name correctly")
+    else: await client.say('https://github.com/uksoftworld/dynoCC/blob/master/' + '.py' + msg)
+    return
 
 @client.command(pass_context=True)
 async def unverify(ctx):
