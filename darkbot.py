@@ -61,7 +61,7 @@ async def userinfo(ctx, user: discord.Member):
     await client.say(embed=embed)
     
 @client.command(pass_context=True)
-async def iam_coder(ctx):
+async def iamcoder(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(title="{}'s got".format(user.name), description="Codies Role", color = discord.Color((r << 16) + (g << 8) + b))
     await client.delete_message(ctx.message)
@@ -70,7 +70,7 @@ async def iam_coder(ctx):
     await client.say(embed=embed)
  
 @client.command(pass_context=True)
-async def iam_serverdeveloper(ctx):
+async def iamserverdeveloper(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(title="{}'s got".format(user.name), description="Server Developer Role", color = discord.Color((r << 16) + (g << 8) + b))
     await client.delete_message(ctx.message)
