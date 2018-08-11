@@ -62,24 +62,29 @@ async def userinfo(ctx, user: discord.Member):
     
 @client.command(pass_context=True)
 async def iamcoder(ctx):
+    author = ctx.message.author
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    embed = discord.Embed(title="Successfully added", description="role in {}".format(ctx.message.author.name), color = discord.Color((r << 16) + (g << 8) + b))
+    embed = discord.Embed(title="Successfully added", description="Codies role", color = discord.Color((r << 16) + (g << 8) + b))
     embed.add_field(name="Enjoy! ", value="Happy Coding :-). Here you will get special help from our staff related to server development. ", inline=True)
     
     await client.delete_message(ctx.message)
     role = discord.utils.get(ctx.message.server.roles, name='Codies')
     await client.add_roles(ctx.message.author, role)
-    await client.say(embed=embed)
+    print('Added codies role in ' + (ctx.message.author.name))
+    await client.send_message(author, embed=embed)
  
 @client.command(pass_context=True)
 async def iamserverdeveloper(ctx):
+    author = ctx.message.author
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    embed = discord.Embed(title="Successfully added", description="role in {}".format(ctx.message.author.name), color = discord.Color((r << 16) + (g << 8) + b))
+    embed = discord.Embed(title="Successfully added", description="Server Developer role", color = discord.Color((r << 16) + (g << 8) + b))
     embed.add_field(name="Enjoy! ", value="Happy Server Development. Here you will get special support from our support team related to server development", inline=True)
     await client.delete_message(ctx.message)
     role = discord.utils.get(ctx.message.server.roles, name='Server Developer')
     await client.add_roles(ctx.message.author, role)
-    await client.say(embed=embed)
+    print('Added codies role in ' + (ctx.message.author.name))
+    await client.send_message(author, embed=embed)
+ 
 @client.command(pass_context = True)
 
 @commands.has_permissions(manage_roles=True)     
