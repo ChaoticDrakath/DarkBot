@@ -474,6 +474,11 @@ async def github(ctx, *, msg = None):
     else: await client.say('https://github.com/' + msg)
     return
 
+@client.command(pass_context = True)
+async def reactionroles(ctx):
+    else: await client.say('Check this video to setup YAGPDB BOT- https://www.youtube.com/watch?v=icAqiw6txRQ')
+    return
+
 @client.command(pass_context=True)
 async def unverify(ctx):
     await client.delete_message(ctx.message)
