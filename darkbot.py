@@ -59,7 +59,24 @@ async def userinfo(ctx, user: discord.Member):
     embed.add_field(name="Joined", value=user.joined_at)
     embed.set_thumbnail(url=user.avatar_url)
     await client.say(embed=embed)
-
+    
+@client.command(pass_context=True)
+async def iam_coder(ctx):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(title="{}'s got".format(user.name), description="Codies Role", color = discord.Color((r << 16) + (g << 8) + b))
+    await client.delete_message(ctx.message)
+    role = discord.utils.get(ctx.message.server.roles, name='Codies')
+    await client.add_roles(ctx.message.author, role)
+    await client.say(embed=embed)
+ 
+@client.command(pass_context=True)
+async def iam_serverdeveloper(ctx):
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(title="{}'s got".format(user.name), description="Server Developer Role", color = discord.Color((r << 16) + (g << 8) + b))
+    await client.delete_message(ctx.message)
+    role = discord.utils.get(ctx.message.server.roles, name='Server Developer')
+    await client.add_roles(ctx.message.author, role)
+    await client.say(embed=embed)
 @client.command(pass_context = True)
 @commands.has_permissions(manage_roles=True)     
 async def role(ctx, user: discord.Member, *, role: discord.Role = None):
