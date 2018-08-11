@@ -223,7 +223,7 @@ async def help(ctx):
     embed.add_field(name = '``Our Help Server Link`` ',value ='https://discord.gg/vMvv5rr',inline = False)
     embed.add_field(name = 'd!help ',value ='Explaines all the commands',inline = False)
     embed.add_field(name = 'd!guess ',value ='To play guess game use ``d!guess <number> and number should be between 1-10',inline = False)
-
+    embed.add_field(name = 'd!github ',value ='Use it like- ``d!github uksoftworld/DarkBot``',inline = False)
     embed.add_field(name = 'd!donate ',value ='Use it to donate us and get a special post on Official DarkBot server.',inline = False)
     embed.add_field(name = 'd!ownerinfo ',value ='To get basic information about owner.',inline = False)
     embed.add_field(name = 'd!sourcecode ',value ='Use it to see darkbot sourcecode.',inline = False)
@@ -468,6 +468,12 @@ async def english(ctx, *, msg = None):
     else: await client.say(msg + ', Please do not use languages other than **English.**')
     return
     
+@client.command(pass_context = True)
+async def github(ctx, *, msg = None):
+    if not msg: await client.say("Please specify respo. ``Format- https://github.com/uksoftworld/DarkBot/edit/master/darkbot.py``")
+    else: await client.say('https://github.com/' + msg)
+    return
+
 @client.command(pass_context=True)
 async def unverify(ctx):
     await client.delete_message(ctx.message)
