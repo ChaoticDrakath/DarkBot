@@ -10,7 +10,13 @@ import os
 client = Bot(description="DarkBot Bot is best", command_prefix="d!", pm_help = True)
 client.remove_command('help')
 
-
+async def status_task():
+    while True:
+        await client.change_presence(game=discord.Game(name='Looking for d!help'))
+        await asyncio.sleep(5)
+        await client.change_presence(game=discord.Game(name='Developing Myself'))
+        await asyncio.sleep(5)
+        
 @client.event
 async def on_ready():
     print('Logged in as '+client.user.name+' (ID:'+client.user.id+') | Connected to '+str(len(client.servers))+' servers | Connected to '+str(len(set(client.get_all_members())))+' users')
@@ -18,7 +24,6 @@ async def on_ready():
     print('--------')
     print('Started Dark BOT')
     print('Created by Utkarsh')
-    return await client.change_presence(game=discord.Game(name='Looking for d!help'))
 
 def is_owner(ctx):
     return ctx.message.author.id == "420525168381657090"
@@ -544,4 +549,7 @@ async def guess(ctx, number):
     else:
         await client.say('The correct answer is ' + str(arg))
         
+@client.event
+async def on_ready():
+    client.loop.create_task(status_task())
 client.run(os.getenv('Token'))
