@@ -10,6 +10,9 @@ import os
 client = Bot(description="DarkBot Bot is best", command_prefix="d!", pm_help = True)
 client.remove_command('help')
 
+status = ['for d!help' , 'Developing Servers']
+msgs = cycle(status)
+
 
 @client.event
 async def on_ready():
@@ -18,7 +21,13 @@ async def on_ready():
     print('--------')
     print('Started Dark BOT')
     print('Created by Utkarsh')
-    return await client.change_presence(game=discord.Game(name='Looking for d!help'))
+async def change_status():
+    await client.wait_until_ready()
+
+    while not client.is_closed:
+        current_status = next(msgs)
+        await client.change_presence(game=discord.Game(name=current_status, type=3))
+        await asyncio.sleep(2)
 
 def is_owner(ctx):
     return ctx.message.author.id == "420525168381657090"
