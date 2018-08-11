@@ -26,7 +26,7 @@ async def on_ready():
     print('--------')
     print('Started Dark BOT')
     print('Created by Utkarsh')
-
+    client.loop.create_task(status_task())
 def is_owner(ctx):
     return ctx.message.author.id == "420525168381657090"
 
@@ -550,8 +550,5 @@ async def guess(ctx, number):
         await client.say("Invalid number")
     else:
         await client.say('The correct answer is ' + str(arg))
-        
-@client.event
-async def on_ready():
-    client.loop.create_task(status_task())
+
 client.run(os.getenv('Token'))
