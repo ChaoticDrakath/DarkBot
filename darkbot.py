@@ -475,9 +475,11 @@ async def github(ctx, *, msg = None):
     return
 
 @client.command(pass_context = True)
-async def reactionroles(ctx):
-    else: await client.say('Check this video to setup YAGPDB BOT- https://www.youtube.com/watch?v=icAqiw6txRQ')
+async def reactionroles(ctx, *, msg = None):
+    if not msg: await client.say("Check this video to setup YAGPDB BOT- https://www.youtube.com/watch?v=icAqiw6txRQ")
+    else: await client.say('Check this video to setup YAGPDB BOT- https://www.youtube.com/watch?v=icAqiw6txRQ ' + msg)
     return
+
 
 @client.command(pass_context=True)
 async def unverify(ctx):
