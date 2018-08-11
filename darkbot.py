@@ -462,4 +462,13 @@ async def removemod(ctx, user: discord.Member):
     await client.remove_roles(user, role)
     await client.delete_message(ctx.message)
 
+@client.command(pass_context=True)
+async def guess(ctx, number):
+    try:
+        arg = random.randint(1, int(number))
+    except ValueError:
+        await client.say("Invalid number")
+    else:
+        await client.say(str(arg))
+        
 client.run(os.getenv('Token'))
