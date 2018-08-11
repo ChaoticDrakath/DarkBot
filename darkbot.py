@@ -64,7 +64,7 @@ async def userinfo(ctx, user: discord.Member):
 async def iamcoder(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(title="Successfully added", description="role in {}".format(ctx.message.author.name), color = discord.Color((r << 16) + (g << 8) + b))
-    embed.add_field(name="You've ", value="got Codies Role", inline=True)
+    embed.add_field(name="Enjoy! ", value="Happy Coding :-). Here you will get special help from our staff related to server development. ", inline=True)
     
     await client.delete_message(ctx.message)
     role = discord.utils.get(ctx.message.server.roles, name='Codies')
@@ -75,7 +75,7 @@ async def iamcoder(ctx):
 async def iamserverdeveloper(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(title="Successfully added", description="role in {}".format(ctx.message.author.name), color = discord.Color((r << 16) + (g << 8) + b))
-    embed.add_field(name="You've ", value="got Codies Role", inline=True)
+    embed.add_field(name="Enjoy! ", value="Happy Server Development. Here you will get special support from our support team related to server development", inline=True)
     await client.delete_message(ctx.message)
     role = discord.utils.get(ctx.message.server.roles, name='Server Developer')
     await client.add_roles(ctx.message.author, role)
