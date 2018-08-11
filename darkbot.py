@@ -63,7 +63,9 @@ async def userinfo(ctx, user: discord.Member):
 @client.command(pass_context=True)
 async def iamcoder(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    embed = discord.Embed(title="{}'s got".format(user.name), description="Codies Role", color = discord.Color((r << 16) + (g << 8) + b))
+    embed = discord.Embed(title="Successfully added", description="role in {}".format(user.name), color = discord.Color((r << 16) + (g << 8) + b))
+    embed.add_field(name="You've ", value="got Codies Role", inline=True)
+    
     await client.delete_message(ctx.message)
     role = discord.utils.get(ctx.message.server.roles, name='Codies')
     await client.add_roles(ctx.message.author, role)
@@ -72,7 +74,8 @@ async def iamcoder(ctx):
 @client.command(pass_context=True)
 async def iamserverdeveloper(ctx):
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    embed = discord.Embed(title="{}'s got".format(user.name), description="Server Developer Role", color = discord.Color((r << 16) + (g << 8) + b))
+    embed = discord.Embed(title="Successfully added", description="role in {}".format(user.name), color = discord.Color((r << 16) + (g << 8) + b))
+    embed.add_field(name="You've ", value="got Codies Role", inline=True)
     await client.delete_message(ctx.message)
     role = discord.utils.get(ctx.message.server.roles, name='Server Developer')
     await client.add_roles(ctx.message.author, role)
