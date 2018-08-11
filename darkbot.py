@@ -72,7 +72,33 @@ async def iamcoder(ctx):
     await client.add_roles(ctx.message.author, role)
     print('Added codies role in ' + (ctx.message.author.name))
     await client.send_message(author, embed=embed)
+    
+@client.command(pass_context=True)
+async def iamnotcoder(ctx):
+    author = ctx.message.author
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(title="Successfully removed", description="Codies role", color = discord.Color((r << 16) + (g << 8) + b))
+    embed.add_field(name="Enjoy! ", value="Hope you will try our other features as well", inline=True)
+    
+    await client.delete_message(ctx.message)
+    role = discord.utils.get(ctx.message.server.roles, name='Codies')
+    await client.remove_roles(ctx.message.author, role)
+    print('Removed codies role from ' + (ctx.message.author.name))
+    await client.send_message(author, embed=embed)
  
+@client.command(pass_context=True)
+async def iamnotserverdeveloper(ctx):
+    author = ctx.message.author
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(title="Successfully removed", description="Server developer role", color = discord.Color((r << 16) + (g << 8) + b))
+    embed.add_field(name="Enjoy! ", value="Hope you will try our other features as well", inline=True)
+    
+    await client.delete_message(ctx.message)
+    role = discord.utils.get(ctx.message.server.roles, name='Server Developer')
+    await client.remove_roles(ctx.message.author, role)
+    print('Removed server developer role from ' + (ctx.message.author.name))
+    await client.send_message(author, embed=embed)
+    
 @client.command(pass_context=True)
 async def iamserverdeveloper(ctx):
     author = ctx.message.author
