@@ -328,7 +328,27 @@ async def ban(ctx,user:discord.Member):
         await client.say('ban failed.')
         return		 
 
-
+@client.command(pass_context = True)
+async def mute(ctx, member: discord.Member):
+     if ctx.message.author.server_permissions.mute_members:
+        role = discord.utils.get(member.server.roles, name='Muted')
+        await client.add_roles(member, role)
+        embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
+        await client.say(embed=embed)
+     else:
+        embed=discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff00f6)
+        await client.say(embed=embed)
+        
+@client.command(pass_context = True)
+async def unmute(ctx, member: discord.Member):
+     if ctx.message.author.server_permissions.mute_members:
+        role = discord.utils.get(member.server.roles, name='Muted')
+        await client.add_roles(member, role)
+        embed=discord.Embed(title="User Unmuted!", description="**{0}** is unmuted by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
+        await client.say(embed=embed)
+     else:
+        embed=discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff00f6)
+        await client.say(embed=embed)
 
 @client.command(pass_context=True)  
 @commands.has_permissions(ban_members=True)     
