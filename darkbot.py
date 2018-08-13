@@ -311,7 +311,7 @@ async def mute(ctx,user:discord.Member):
     
     if user.server_permissions.kick_members:
         return
-        role = discord.utils.get(ctx.message.server.roles,name='Muted')  
+    role = discord.utils.get(ctx.message.server.roles,name='Muted')  
     try:
         await client.add_roles(ctx.message.mentions[0], role)	 		
         await client.say('Muted '+user.name+' :mute: ')
