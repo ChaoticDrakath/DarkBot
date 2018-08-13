@@ -269,10 +269,9 @@ async def help(ctx):
 @commands.has_permissions(kick_members=True)     
 async def kick(ctx,user:discord.Member):
 
-    if ctx.message.author.server_permissions.kick_members: 
-        await client.say('==>')      
-        await client.delete_message(ctx.message)
-
+    if user.server_permissions.kick_members:
+        return
+    
     try:
         await client.kick(user)
         await client.say(user.name+' was kicked. Good bye '+user.name+'!')
@@ -286,7 +285,7 @@ async def kick(ctx,user:discord.Member):
 @commands.has_permissions(manage_messages=True)  
 async def clear(ctx, number):
 
-    if ctx.message.author.server_permissions.ban_members: 
+    if ctx.message.author.server_permissions.manage_messages: 
          mgs = [] #Empty list to put all the messages in the log
          number = int(number) #Converting the amount of messages to delete to an integer
     async for x in client.logs_from(ctx.message.channel, limit = number+1):
@@ -311,8 +310,8 @@ async def clear(ctx, number):
 @commands.has_permissions(mute_members=True)      
 
 async def mute(ctx,user:discord.Member):
-    if ctx.message.author.server_permissions.mute_members: 
-             
+    if user.server_permissions.mute_members:
+        return     
        role = discord.utils.get(ctx.message.server.roles,name='Muted')  
     try:
         await client.add_roles(ctx.message.mentions[0], role)	 		
@@ -333,7 +332,9 @@ async def mute(ctx,user:discord.Member):
 @commands.has_permissions(mute_members=True)      
 
 async def unmute(ctx,user:discord.Member):
-    if ctx.message.author.server_permissions.mute_members: 
+    
+    if user.server_permissions.mute_members:
+        return
              
        role = discord.utils.get(ctx.message.server.roles,name='Muted')       
 
@@ -354,8 +355,8 @@ async def unmute(ctx,user:discord.Member):
 @commands.has_permissions(ban_members=True)      
 async def ban(ctx,user:discord.Member):
 
-    if ctx.message.author.server_permissions.ban_members: 
-        await client.say('==>')      
+    if user.server_permissions.ban_members:
+        return
 
     try:
         await client.ban(user)
