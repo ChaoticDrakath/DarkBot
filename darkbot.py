@@ -474,7 +474,16 @@ async def english(ctx, *, msg = None):
     await client.delete_message(ctx.message)
 
     if not msg: await client.say("Please specify a user to warn")
-    else: await client.say(msg + ', Please do not use languages other than **English.**')
+    else: await client.say(msg + ', Please do not use language other than **English.**')
+    return
+
+@client.command(pass_context = True)
+@commands.has_permissions(kick_members=True)
+async def brb(ctx, *, msg = None):
+    await client.delete_message(ctx.message)
+
+    if not msg: await client.say("Please specify a string")
+    else: await client.say('This user is brb for ' + msg)
     return
 
 @client.command(pass_context = True)
