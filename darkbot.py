@@ -306,9 +306,7 @@ async def clear(ctx, number):
     await client.delete_messages(mgs)   	
 
 @client.command(pass_context=True)
-    
 @commands.has_permissions(mute_members=True)      
-
 async def mute(ctx,user:discord.Member):
     if user.server_permissions.mute_members:
         return     
