@@ -305,22 +305,7 @@ async def clear(ctx, number):
 
     await client.delete_messages(mgs)   	
 
-@client.command(pass_context=True)
-@commands.has_permissions(mute_members=True)      
-async def mute(ctx,user:discord.Member):
-    
-    if user.server_permissions.kick_members:
-        return
-    role = discord.utils.get(ctx.message.server.roles,name='Muted')  
-    try:
-        await client.add_roles(ctx.message.mentions[0], role)	 		
-        await client.say('Muted '+user.name+' :mute: ')
-    except discord.Forbidden:
-        await client.say('Permission denied.')
-        return
-    except discord.HTTPException:
-        await client.say('mute failed.')
-        return    	
+
 
 
 @client.command(pass_context=True)
