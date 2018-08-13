@@ -476,6 +476,15 @@ async def english(ctx, *, msg = None):
     if not msg: await client.say("Please specify a user to warn")
     else: await client.say(msg + ', Please do not use languages other than **English.**')
     return
+
+@client.command(pass_context = True)
+@commands.has_permissions(kick_members=True)
+async def welcomedbs(ctx, *, msg = None):
+    await client.delete_message(ctx.message)
+
+    if not msg: await client.say("Please specify a user to welcome")
+    else: await client.say('Welcome' + msg +  ', Please check <#474572305192845312> and never try to break any one of them')
+    return
     
 @client.command(pass_context = True)
 async def github(ctx, *, msg = None):
