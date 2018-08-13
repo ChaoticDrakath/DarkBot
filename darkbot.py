@@ -315,15 +315,12 @@ async def mute(ctx,user:discord.Member):
     try:
         await client.add_roles(ctx.message.mentions[0], role)	 		
         await client.say('Muted '+user.name+' :mute: ')
-          
-
     except discord.Forbidden:
         await client.say('Permission denied.')
         return
     except discord.HTTPException:
         await client.say('mute failed.')
         return    	
-
 
 
 @client.command(pass_context=True)
