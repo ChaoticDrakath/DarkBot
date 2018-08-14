@@ -32,7 +32,7 @@ def is_owner(ctx):
 
 @client.command(pass_context = True)
 @commands.check(is_owner)
-async def shutdown():
+async def restart():
     await client.logout()
  
 
