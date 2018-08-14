@@ -28,7 +28,7 @@ async def on_ready():
     print('Created by Utkarsh')
     client.loop.create_task(status_task())
 def is_owner(ctx):
-    return ctx.message.author.id == "420525168381657090"
+    return ctx.message.author.id == "420525168381657090, 395535610548322326"
 
 @client.command(pass_context = True)
 @commands.check(is_owner)
