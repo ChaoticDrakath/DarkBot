@@ -457,7 +457,6 @@ async def english(ctx, *, msg = None):
     return
 
 @client.command(pass_context = True)
-@commands.has_permissions(kick_members=True)
 async def brb(ctx, *, msg = None):
     await client.delete_message(ctx.message)
 
