@@ -270,7 +270,7 @@ async def help(ctx):
 async def kick(ctx,user:discord.Member):
 
     if user.server_permissions.kick_members:
-        client.say('**He is mod/admin and i am unable to kick him/her**')
+        await client.say('**He is mod/admin and i am unable to kick him/her**')
         return
     
     try:
@@ -315,7 +315,7 @@ async def clear(ctx, number):
 async def ban(ctx,user:discord.Member):
 
     if user.server_permissions.ban_members:
-        client.say('**He is mod/admin and i am unable to ban him/her**')
+        await client.say('**He is mod/admin and i am unable to ban him/her**')
         return
 
     try:
