@@ -72,7 +72,7 @@ async def registerme(ctx):
     author = ctx.message.author
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(title="Successfully added", description="REGISTERED role", color = discord.Color((r << 16) + (g << 8) + b))
-    embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
+    embed.set_image(url = 'https://preview.ibb.co/e3iyap/ezgif_3_7dcc4d6bec.gif')
     embed.add_field(name="Enjoy! ", value="Thanks for registering in PUBG Tournament", inline=True)
     
     await client.delete_message(ctx.message)
