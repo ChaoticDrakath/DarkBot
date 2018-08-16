@@ -1,11 +1,15 @@
-import discord
-import asyncio
+import discord, logging, json
+from discord.ext import commands
+from profanity import profanity
+from tinydb import TinyDB, Query
+from tinydb.operations import delete,increment
 from discord.ext.commands import Bot
 from discord.ext import commands
 import platform
 import colorsys
 import random
 import os
+
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
 client = Bot(description="DarkBot Bot is best", command_prefix="d!", pm_help = True)
@@ -32,6 +36,10 @@ async def on_ready():
     client.loop.create_task(status_task())
 def is_owner(ctx):
     return ctx.message.author.id == "420525168381657090, 395535610548322326"
+
+logging.basicConfig(level=logging.WARNING)
+db = TinyDB('data.json')
+Users = Query()
 
 @client.command(pass_context = True)
 @commands.check(is_owner)
@@ -582,5 +590,56 @@ async def guess(ctx, number):
         await client.say("Invalid number")
     else:
         await client.say('The correct answer is ' + str(arg))
+
+@client.command(pass_context=True)
+async def roles(context):
+	"""Displays all of the roles with their ids"""
+	roles = context.message.server.roles
+	result = "The roles are "
+	for role in roles:
+		result += '```' + role.name + '```' + ": " + '```' + role.id + '```' + ",\n "
+	await client.say(result)
+    
+@client.command(pass_context=True, hidden=True)
+async def strike(context):
+	usr = context.message.mentions[0]
+	if db.contains(Users.id ==usr.id):
+			if db.contains((Users.id == usr.id) & (Users.warns == 3)):
+				await client.kick(usr)
+				db.update({'warns': 0}, Users.id ==usr.id)
+			else:
+				db.update(increment('warns'), Users.id == usr.id)
+	else:
+		db.insert({'id': usr.id, 'warns': 0})
+	await client.send_message(usr,"You have recived a strike if you recive three strikes you will be kicked")
+    
+@client.listen()
+async def on_message(message):
+	if profanity.contains_profanity(message.content):
+		await client.delete_message(message)
+		if db.contains(Users.id == message.author.id):
+			if db.contains((Users.id == message.author.id) & (Users.warns == 3)):
+				await client.kick(message.author)
+				db.update({'warns': 0}, Users.id == message.author.id)
+			else:
+				db.update(increment('warns'), Users.id == message.author.id)
+		else:
+			db.insert({'id': message.author.id, 'warns': 0})
+		await client.send_message(message.author,"You have recived a strike if you recive three strikes you will be kicked")
+        
+@client.listen()
+async def on_message_edit(before, after):
+	message = after
+	if profanity.contains_profanity(message.content):
+		await client.delete_message(message)
+		if db.contains(Users.id == message.author.id):
+			if db.contains((Users.id == message.author.id) & (Users.warns == 3)):
+				await client.kick(message.author)
+				db.update({'warns': 0}, Users.id == message.author.id)
+			else:
+				db.update(increment('warns'), Users.id == message.author.id)
+		else:
+			db.insert({'id': message.author.id, 'warns': 0})
+		await client.send_message(message.author,"You have recived a strike if you recive three strikes you will be kicked")
 
 client.run(os.getenv('Token'))
