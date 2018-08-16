@@ -591,7 +591,7 @@ async def roles(context):
 	roles = context.message.server.roles
 	result = "The roles are "
 	for role in roles:
-		result += '```' + role.name + '```' + ": " + '```' + role.id + '```' + ",\n "
+		result += '``' + role.name + '``' + ": " + '``' + role.id + '``' + ",\n "
 	await client.say(result)
     
 
