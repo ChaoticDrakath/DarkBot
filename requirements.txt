@@ -2,4 +2,4 @@ discord.py
 profanity
 asyncio
 tinydb
-
+json
