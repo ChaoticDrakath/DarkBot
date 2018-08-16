@@ -37,6 +37,7 @@ def is_owner(ctx):
 async def restart():
     await client.logout()
  
+   
 @client.event
 async def on_member_join(member):
     channel = discord.utils.get(client.get_all_channels(), server__name='DarkBot Official Server', name='darkbot-servers-join-leave-log')
@@ -47,10 +48,6 @@ async def on_member_join(member):
     embed.set_image(url = 'https://media.giphy.com/media/OkJat1YNdoD3W/giphy.gif')
     embed.set_thumbnail(url=member.avatar_url)
     await client.send_message(channel, embed=embed)
-    
-@client.event
-async def on_member_join(member):
-    
     if member.server.id == "450901954105966592":
      await client.send_message(member,'Also join our Pistol Tournament server - https://discord.gg/eZGr7rD') 
     
