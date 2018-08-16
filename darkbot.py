@@ -569,6 +569,11 @@ async def removemod(ctx, user: discord.Member):
     await client.remove_roles(user, role)
     await client.delete_message(ctx.message)
 
+@client.command(pass_context = True)
+async def botwarncode(ctx):
+    await client.say('https://hastebin.com/wukokuveyo.py')
+    return
+
 @client.command(pass_context=True)
 async def guess(ctx, number):
     try:
