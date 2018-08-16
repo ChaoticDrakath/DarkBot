@@ -1,7 +1,10 @@
-import discord
+import discord, logging, json
 from discord.ext.commands import Bot
 from discord.ext import commands
+from profanity import profanity
 import asyncio
+from tinydb import TinyDB, Query
+from tinydb.operations import delete,increment
 import platform
 import colorsys
 import random
@@ -31,6 +34,11 @@ async def on_ready():
     print('Started Dark BOT')
     print('Created by Utkarsh')
     client.loop.create_task(status_task())
+	
+logging.basicConfig(level=logging.WARNING)
+db = TinyDB('data.json')
+Users = Query()
+
 def is_owner(ctx):
     return ctx.message.author.id == "420525168381657090, 395535610548322326"
 
