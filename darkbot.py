@@ -37,9 +37,6 @@ async def on_ready():
 def is_owner(ctx):
     return ctx.message.author.id == "420525168381657090, 395535610548322326"
 
-logging.basicConfig(level=logging.WARNING)
-db = TinyDB('data.json')
-Users = Query()
 
 @client.command(pass_context = True)
 @commands.check(is_owner)
@@ -600,46 +597,5 @@ async def roles(context):
 		result += '```' + role.name + '```' + ": " + '```' + role.id + '```' + ",\n "
 	await client.say(result)
     
-@client.command(pass_context=True, hidden=True)
-async def strike(context):
-	usr = context.message.mentions[0]
-	if db.contains(Users.id ==usr.id):
-			if db.contains((Users.id == usr.id) & (Users.warns == 3)):
-				await client.kick(usr)
-				db.update({'warns': 0}, Users.id ==usr.id)
-			else:
-				db.update(increment('warns'), Users.id == usr.id)
-	else:
-		db.insert({'id': usr.id, 'warns': 0})
-	await client.send_message(usr,"You have recived a strike if you recive three strikes you will be kicked")
-    
-@client.listen()
-async def on_message(message):
-	if profanity.contains_profanity(message.content):
-		await client.delete_message(message)
-		if db.contains(Users.id == message.author.id):
-			if db.contains((Users.id == message.author.id) & (Users.warns == 3)):
-				await client.kick(message.author)
-				db.update({'warns': 0}, Users.id == message.author.id)
-			else:
-				db.update(increment('warns'), Users.id == message.author.id)
-		else:
-			db.insert({'id': message.author.id, 'warns': 0})
-		await client.send_message(message.author,"You have recived a strike if you recive three strikes you will be kicked")
-        
-@client.listen()
-async def on_message_edit(before, after):
-	message = after
-	if profanity.contains_profanity(message.content):
-		await client.delete_message(message)
-		if db.contains(Users.id == message.author.id):
-			if db.contains((Users.id == message.author.id) & (Users.warns == 3)):
-				await client.kick(message.author)
-				db.update({'warns': 0}, Users.id == message.author.id)
-			else:
-				db.update(increment('warns'), Users.id == message.author.id)
-		else:
-			db.insert({'id': message.author.id, 'warns': 0})
-		await client.send_message(message.author,"You have recived a strike if you recive three strikes you will be kicked")
 
 client.run(os.getenv('Token'))
