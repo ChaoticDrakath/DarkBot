@@ -483,7 +483,7 @@ async def norole(ctx, *, msg = None):
 @client.command(pass_context = True)
 async def happybirthday(ctx, *, msg = None):
     if not msg: await client.say("Please specify a user to wish")
-    else: await client.say('Happy birthday ' + msg + 'https://asset.holidaycardsapp.com/assets/card/b_day399-22d0564f899cecd0375ba593a891e1b9.png')
+    else: await client.say('Happy birthday ' + msg + '\nhttps://asset.holidaycardsapp.com/assets/card/b_day399-22d0564f899cecd0375ba593a891e1b9.png')
     return
 
 	
