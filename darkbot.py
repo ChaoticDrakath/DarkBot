@@ -1,10 +1,7 @@
-import discord, logging, json
+import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
-from profanity import profanity
 import asyncio
-from tinydb import TinyDB, Query
-from tinydb.operations import delete,increment
 import platform
 import colorsys
 import random
@@ -47,37 +44,7 @@ def is_owner(ctx):
 @commands.check(is_owner)
 async def restart():
     await client.logout()
- 
-   
-@client.listen()
-async def on_message(message):
-	if profanity.contains_profanity(message.content):
-		await client.delete_message(message)
-		if db.contains(Users.id == message.author.id):
-			if db.contains((Users.id == message.author.id) & (Users.warns == 3)):
-				await client.kick(message.author)
-				db.update({'warns': 0}, Users.id == message.author.id)
-			else:
-				db.update(increment('warns'), Users.id == message.author.id)
-		else:
-			db.insert({'id': message.author.id, 'warns': 0})
-		await client.send_message(message.author,"You have recived a strike if you recive three strikes you will be kicked")
-        
-@client.listen()
-async def on_message_edit(before, after):
-	message = after
-	if profanity.contains_profanity(message.content):
-		await client.delete_message(message)
-		if db.contains(Users.id == message.author.id):
-			if db.contains((Users.id == message.author.id) & (Users.warns == 3)):
-				await client.kick(message.author)
-				db.update({'warns': 0}, Users.id == message.author.id)
-			else:
-				db.update(increment('warns'), Users.id == message.author.id)
-		else:
-			db.insert({'id': message.author.id, 'warns': 0})
-		await client.send_message(message.author,"You have recived a strike if you recive three strikes you will be kicked")
-		
+ 	
 @client.event
 async def on_member_join(member):
     print("In our server" + member.name + " just joined")
@@ -176,20 +143,6 @@ async def iamserverdeveloper(ctx):
     print('Added codies role in ' + (ctx.message.author.name))
     await client.send_message(author, embed=embed)
  
-@client.command(pass_context=True, hidden=True)
-@commands.has_permissions(kick_members=True)
-async def strike(context):
-	usr = context.message.mentions[0]
-	if db.contains(Users.id ==usr.id):
-			if db.contains((Users.id == usr.id) & (Users.warns == 3)):
-				await client.kick(usr)
-				db.update({'warns': 0}, Users.id ==usr.id)
-			else:
-				db.update(increment('warns'), Users.id == usr.id)
-	else:
-		db.insert({'id': usr.id, 'warns': 0})
-	await client.send_message(usr,"You have recived a strike if you recive three strikes you will be kicked")
-
 	
 @client.command(pass_context = True)
 
