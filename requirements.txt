@@ -1,6 +1,4 @@
 discord.py
 asyncio
 json
-TinyDB
-Query
 profanity
