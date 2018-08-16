@@ -586,6 +586,7 @@ async def guess(ctx, number):
         await client.say('The correct answer is ' + str(arg))
 
 @client.command(pass_context=True)
+@commands.has_permissions(kick_members=True) 
 async def roles(context):
 	"""Displays all of the roles with their ids"""
 	roles = context.message.server.roles
