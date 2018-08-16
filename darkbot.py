@@ -31,10 +31,6 @@ async def on_ready():
     print('Started Dark BOT')
     print('Created by Utkarsh')
     client.loop.create_task(status_task())
-	
-logging.basicConfig(level=logging.WARNING)
-db = TinyDB('data.json')
-Users = Query()
 
 def is_owner(ctx):
     return ctx.message.author.id == "420525168381657090, 395535610548322326"
