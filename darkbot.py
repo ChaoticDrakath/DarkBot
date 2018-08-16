@@ -7,6 +7,7 @@ import colorsys
 import random
 import os
 
+Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
 client = Bot(description="DarkBot Bot is best", command_prefix="d!", pm_help = True)
 client.remove_command('help')
 
@@ -310,11 +311,26 @@ async def kick(ctx,user:discord.Member):
 @client.command(pass_context = True)
 @commands.has_permissions(manage_messages=True)  
 async def clear(ctx, number):
-    mgs = [] #Empty list to put all the messages in the log
-    number = int(number) #Converting the amount of messages to delete to an integer
-    async for x in client.logs_from(ctx.message.channel, limit = number):
-        mgs.append(x)
-    await client.delete_messages(mgs)
+ 
+    if ctx.message.author.server_permissions.manage_messages:
+         mgs = [] #Empty list to put all the messages in the log
+         number = int(number) #Converting the amount of messages to delete to an integer
+    async for x in client.logs_from(ctx.message.channel, limit = number+1):
+        mgs.append(x)            
+       
+    try:
+        await client.delete_messages(mgs)          
+        await client.say(str(number)+' messages deleted')
+     
+    except discord.Forbidden:
+        await client.say(embed=Forbidden)
+        return
+    except discord.HTTPException:
+        await client.say('clear failed.')
+        return         
+   
+ 
+    await client.delete_messages(mgs)      
 
 
 
