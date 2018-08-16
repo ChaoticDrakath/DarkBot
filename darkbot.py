@@ -266,6 +266,7 @@ async def help(ctx):
     embed.add_field(name = 'd!sourcecode ',value ='Use it to see darkbot sourcecode.',inline = False)
     embed.add_field(name = 'd!upvote ',value ='Use it to Upvote our bot and help us to grow',inline = False)
     embed.add_field(name = 'd!authlink ',value ='Use it to get authorizing link to authorize this bot to your server.',inline = False)
+    embed.add_field(name = 'd!happybirthday @user ',value ='To wish someone happy birthday',inline = False)
     embed.add_field(name = 'd!xp ',value ='Use it to check your chatting experience',inline = False)
     embed.add_field(name = 'd!technews ',value ='Use it to get tech news',inline = False)
     embed.add_field(name = 'd!googlefy ',value ='Use it like ``d!googlefy <string>``.',inline = False)
@@ -479,6 +480,13 @@ async def norole(ctx, *, msg = None):
     else: await client.say(msg + ', Please Do not ask for promotions check Rules again.')
     return
 
+@client.command(pass_context = True)
+async def happybirthday(ctx, *, msg = None):
+    if not msg: await client.say("Please specify a user to wish")
+    else: await client.say('Happy birthday ' + msg + 'https://asset.holidaycardsapp.com/assets/card/b_day399-22d0564f899cecd0375ba593a891e1b9.png')
+    return
+
+	
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
 async def english(ctx, *, msg = None):
