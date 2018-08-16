@@ -1,5 +1,4 @@
-import discord, logging, json
-from discord.ext import commands
+import discord
 from profanity import profanity
 from tinydb import TinyDB, Query
 from tinydb.operations import delete,increment
