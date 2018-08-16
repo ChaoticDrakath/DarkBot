@@ -571,7 +571,7 @@ async def removemod(ctx, user: discord.Member):
 
 @client.command(pass_context = True)
 async def botwarncode(ctx):
-    await client.say('https://hastebin.com/wukokuveyo.py')
+    await client.say('https://hastebin.com/ibogudoxot.py')
     return
 
 @client.command(pass_context=True)
