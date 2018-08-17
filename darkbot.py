@@ -66,6 +66,12 @@ async def join(ctx):
     channel = author.voice_channel
     await client.join_voice_channel(channel)
 
+@client.command(pass_context = True)
+async def leavevoice(ctx):
+    for x in client.voice_clients:
+        if(x.server == ctx.message.server):
+            return await x.disconnect()
+
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)     
