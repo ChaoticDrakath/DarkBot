@@ -216,7 +216,6 @@ async def setnick(ctx, user: discord.Member, *, nickname):
     await client.delete_message(ctx.message)
 
 @client.command(pass_context=True)
-@commands.has_permissions(kick_members=True)     
 async def poll(ctx, question, *options: str):
         if len(options) <= 1:
             await client.say('You need more than one option to make a poll!')
@@ -256,7 +255,9 @@ async def help(ctx):
     embed.set_author(name='Help')
     embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
     embed.add_field(name = '``Our Help Server Link`` ',value ='https://discord.gg/vMvv5rr',inline = False)
+    embed.add_field(name = 'd!modhelp ',value ='To get list of all moderation commands.',inline = False)
     embed.add_field(name = 'd!help ',value ='Explaines all the commands',inline = False)
+    embed.add_field(name = 'd!poll ',value ='Use it like ``d!poll "Question" "Option1" "Option2" ..... "Option9"``.',inline = False)
     embed.add_field(name = 'd!guess ',value ='To play guess game use ``d!guess <number> and number should be between 1-10``',inline = False)
     embed.add_field(name = 'd!github ',value ='Use it like- ``d!github uksoftworld/DarkBot``',inline = False)
     embed.add_field(name = 'd!bottutorial ',value ='Use it like ``d!bottutorial <tutorial name by darklegend>``',inline = False)
@@ -273,12 +274,20 @@ async def help(ctx):
     embed.add_field(name = 'd!spacenews ',value ='Use it to get space news',inline = False)
     embed.add_field(name = 'd!phynews ',value ='Use it to get physycs',inline = False)
     embed.add_field(name = 'd!verify ',value ='Use it to get verified role. Note- It needs proper setup.',inline = False)
+    await client.send_message(author,embed=embed)
+    await client.say('✉ Check DMs For Information')
+@client.command(pass_context = True)
+async def modhelp(ctx):
+    author = ctx.message.author
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_author(name='Moderation Commands Help')
+    embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
     embed.add_field(name = 'd!removemod(Admin Permission Required)',value ='Use it like ``d!removemod @user`` to remove him from mod. Note-You need Moderator role in your server below darkbot to use it.',inline = False)
     embed.add_field(name = 'd!makemod(Admin Permission Required)',value ='Use it like ``d!makemod @user`` to make him mod. Note-You need Moderator role in your server below darkbot to use it.',inline = False)
     embed.add_field(name = 'd!setup(Admin Permission Required)',value ='Use it to add channels, voice channels and roles if your server is not developed currently and you have just 1-2 channels. Note- Use it only 1 time. If you will use same command again then it will do same thing again .i.e It will add true copy of previous channels + true copy of roles that made in previous command use. So be careful.',inline = False)
     embed.add_field(name = 'd!friend(Admin Permission Required) ',value ='Use it like ``d!friend @user`` to give anyone Friend of Owner role',inline = False)
     embed.add_field(name = 'd!role(Manage Roles Permission Required)',value ='Use it like ``d!role @user <rolename>``.',inline = False)
-    embed.add_field(name = 'd!poll(Kick members Permission Required) ',value ='Use it like ``d!poll "Question" "Option1" "Option2" ..... "Option9"``.',inline = False)
     embed.add_field(name = 'd!setnick(Manage nickname permission required)',value ='Use it like ``d!setnick @user <New nickname>`` to change the nickname of tagged user.',inline = False)
     embed.add_field(name = 'd!english(Kick members Permission Required)',value ='Use it like ``d!english @user`` when someone speaks languages other than English.',inline = False)
     embed.add_field(name = 'd!serverinfo(Kick members Permission Required) ',value ='Use it like ``d!serverinfo`` to get server info',inline = False)
@@ -294,8 +303,6 @@ async def help(ctx):
     embed.add_field(name = 'd!norole(Kick members Permission Required) ',value ='Use it like ``d!norole @user`` to warn anyone if he/she asks for promotion',inline = False)
     await client.send_message(author,embed=embed)
     await client.say('✉ Check DMs For Information')
-
-
 
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)     
