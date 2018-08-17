@@ -293,7 +293,7 @@ async def help(ctx):
     embed.add_field(name = 'd!warndm(Kick members Permission Required)',value ='Use it like ``d!warndm @user <violation type in one word>`` to warn any user in dm',inline = False)
     embed.add_field(name = 'd!norole(Kick members Permission Required) ',value ='Use it like ``d!norole @user`` to warn anyone if he/she asks for promotion',inline = False)
     await client.send_message(author,embed=embed)
-    await client.say('📧 Check DMs For Information')
+    await client.say('✉ Check DMs For Information')
 
 
 
