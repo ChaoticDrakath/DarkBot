@@ -59,7 +59,14 @@ async def on_member_join(member):
     embed.set_image(url = 'https://media.giphy.com/media/OkJat1YNdoD3W/giphy.gif')
     embed.set_thumbnail(url=member.avatar_url)
     await client.send_message(channel, embed=embed)
-    
+
+@client.command(pass_context=True)
+async def join(ctx):
+    author = ctx.message.author
+    channel = author.voice_channel
+    await client.join_voice_channel(channel)
+
+
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)     
 async def userinfo(ctx, user: discord.Member):
