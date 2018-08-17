@@ -61,7 +61,7 @@ async def on_member_join(member):
     await client.send_message(channel, embed=embed)
 
 @client.command(pass_context=True)
-async def join(ctx):
+async def joinvoice(ctx):
     author = ctx.message.author
     channel = author.voice_channel
     await client.join_voice_channel(channel)
