@@ -158,8 +158,8 @@ async def role(ctx, user: discord.Member, *, role: discord.Role = None):
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True)
 async def warn(ctx, userName: discord.User, *, message:str): 
-    await client.send_message(userName, "You have been warned for: {}".format(message))
-    await client.say(":warning: __**{0} Has Been Warned!**__ :warning: Reason:{1} ".format(userName,message))
+    await client.send_message(userName, "You have been warned for: **{}**".format(message))
+    await client.say(":warning: __**{0} Has Been Warned!**__ :warning: ** Reason:{1}** ".format(userName,message))
     pass
 
 @client.command(pass_context=True)
@@ -290,7 +290,7 @@ async def help(ctx):
     embed.add_field(name = 'd!unmute(Mute members Permission Required) ',value ='Use it like ``d!unmute @user`` to unmute anyone',inline = False)
     embed.add_field(name = 'd!ban(Ban members Permission Required) ',value ='Use it like ``d!ban @user`` to ban any user',inline = False)
     embed.add_field(name = 'd!rules(Kick members Permission Required)',value ='Use it like ``d!rules @user <violation type>`` to warn user',inline = False)
-    embed.add_field(name = 'd!warndm(Kick members Permission Required)',value ='Use it like ``d!warndm @user <violation type in one word>`` to warn any user in dm',inline = False)
+    embed.add_field(name = 'd!warn(Kick members Permission Required)',value ='Use it like ``d!warn @user <violation type>`` to warn any user',inline = False)    
     embed.add_field(name = 'd!norole(Kick members Permission Required) ',value ='Use it like ``d!norole @user`` to warn anyone if he/she asks for promotion',inline = False)
     await client.send_message(author,embed=embed)
     await client.say('✉ Check DMs For Information')
@@ -426,13 +426,6 @@ async def rules(ctx, *, msg = None):
 
     if not msg: await client.say("Please specify a user to warn")
     else: await client.say(msg + ', Please Read Rules again and never break any one of them again otherwise i will mute/kick/ban you next time.')
-    return
-
-@client.command(pass_context = True)
-@commands.has_permissions(kick_members=True)
-async def warndm(ctx, member: discord.Member):
-    await client.delete_message(ctx.message)
-    await client.send_message(member, ', Please Read <#469507420826238996> and never break any one of them again otherwise i will mute/kick/ban you next time.')
     return
 
 @client.command(pass_context = True)
