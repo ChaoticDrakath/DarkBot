@@ -530,7 +530,17 @@ async def welcomedbs(ctx, *, msg = None):
     if not msg: await client.say("Please specify a user to welcome")
     else: await client.say('Welcome' + msg +  ', Please check <#474572305192845312> and never try to break any one of them')
     return
-    
+
+
+@client.command(pass_context = True) 
+
+async def htmltutorial(ctx, *, msg = None):
+    await client.delete_message(ctx.message)
+
+    if not msg: await client.say("Please specify a user")
+    else: await client.say('Welcome' + msg +  ', Please check http://uksoft.000webhostapp.com/Programming-Tutorials/index.html')
+    return
+   
 @client.command(pass_context = True)
 async def github(ctx, *, msg = None):
     if not msg: await client.say("Please specify respo. ``Format- https://github.com/uksoftworld/DarkBot``")
