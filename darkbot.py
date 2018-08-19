@@ -677,5 +677,30 @@ async def membercount(ctx, *args):
 
     await client.send_message(ctx.message.channel, embed=em)
     await client.delete_message(ctx.message)
+	
+@client.command(pass_context=True, aliases=['em', 'e'])
+async def embed(ctx, *args):
+    """
+    Sending embeded messages with color (and maby later title, footer and fields)
+    """
+    colors = {
+        "red": Color.red(),
+        "green": Color.green(),
+        "gold": Color.gold(),
+        "orange": Color.orange(),
+        "blue": Color.blue()
+    }
+    if args:
+        argstr = " ".join(args)
+        if "-c " in argstr:
+            text = argstr.split("-c ")[0]
+            color_str = argstr.split("-c ")[1]
+            color = colors[color_str] if color_str in colors else Color.default()
+        else:
+            text = argstr
+            color = Color.default()
+        await client.send_message(ctx.message.channel, embed=Embed(color=color, description=text))
+    await client.delete_message(ctx.message)
+
 
 client.run(os.getenv('Token'))
