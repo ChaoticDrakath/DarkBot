@@ -683,5 +683,39 @@ async def embed(ctx, *args):
     await client.send_message(ctx.message.channel, embed=Embed(color = color, description=text))
     await client.delete_message(ctx.message)
 
+@client.command(pass_context=True, aliases=['s'])
+@commands.check(is_owner)
+async def status(ctx, *args):
+    """
+    Change account status visible for others*
+    *an effect of using a userbot is, that the bot displays your status as 'online'
+    for other users while you can change your status to 'idle' or 'dnd', but
+    noone will see it until the bot changes the status.
+    """
+    stati = {
+        "on":       Status.online,
+        "online":   Status.online,
+        "off":      Status.invisible,
+        "offline":  Status.invisible,
+        "dnd":      Status.dnd,
+        "idle":     Status.idle,
+        "afk":      Status.idle
+    }
+    if args:
+        cgame = ctx.message.server.get_member(client.user.id).game
+        if (args[0] in stati):
+            if (args[0] == "afk"):
+                await client.change_presence(game=cgame, status=Status.idle, afk=True)
+            else:
+                await client.change_presence(game=cgame, status=stati[args[0]], afk=False)
+                print(stati[args[0]])
+            msg = await client.send_message(ctx.message.channel, embed=Embed(description="Changed current status to `%s`." % args[0], color=Color.gold()))
+    else:
+        await client.change_presencen(game=cgame, status=Status.online, afk=False)
+        msg = await client.send_message(ctx.message.channel, embed=Embed(description="Changed current status to `online`.", color=Color.gold()))
+    await client.delete_message(ctx.message)
+    await asyncio.sleep(3)
+    await client.delete_message(msg)
+
 
 client.run(os.getenv('Token'))
