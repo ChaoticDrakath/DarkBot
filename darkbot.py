@@ -673,6 +673,7 @@ async def embed(ctx, *args):
     """
     Sending embeded messages with color (and maby later title, footer and fields)
     """
+    argstr = " ".join(args)
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     text = argstr
     color = discord.Color((r << 16) + (g << 8) + b)
