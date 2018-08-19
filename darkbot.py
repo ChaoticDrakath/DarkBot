@@ -61,6 +61,7 @@ async def on_member_join(member):
     await client.send_message(channel, embed=embed)
 
 @client.command(pass_context=True)
+@commands.has_permissions(kick_members=True)
 async def joinvoice(ctx):
     author = ctx.message.author
     channel = author.voice_channel
@@ -633,6 +634,7 @@ async def roles(context):
 	await client.say(result)
     
 @client.command(pass_context=True, aliases=['server'])
+@commands.has_permissions(kick_members=True)
 async def membercount(ctx, *args):
     """
     Shows stats and information about current guild.
@@ -646,39 +648,27 @@ async def membercount(ctx, *args):
     g = ctx.message.server
 
     gid = g.id
-    owner = [g.owner.name + "#" + g.owner.discriminator, g.owner.id]
-    region = str(g.region)
     membs = str(len(g.members))
     membs_on = str(len([m for m in g.members if not m.status == Status.offline]))
     users = str(len([m for m in g.members if not m.bot]))
     users_on = str(len([m for m in g.members if not m.bot and not m.status == Status.offline]))
     bots = str(len([m for m in g.members if m.bot]))
     bots_on = str(len([m for m in g.members if m.bot and not m.status == Status.offline]))
-    tchans = str(len([c for c in g.channels if c.type == ChannelType.text]))
-    vchans = str(len([c for c in g.channels if c.type == ChannelType.voice]))
     created = str(g.created_at)
-    roles = ", ".join([r.name for r in g.roles])
-
+    
     em = Embed(title="Guild Information")
     em.description =    "```\n" \
-                        "ID:        %s\n" \
-                        "Owner:     %s (%s)\n" \
-                        "Region:    %s\n" \
                         "Members:   %s (%s)\n" \
                         "  Users:   %s (%s)\n" \
                         "  Bots:    %s (%s)\n" \
-                        "Channels:\n" \
-                        "  Text:    %s\n" \
-                        "  Voice:   %s\n" \
                         "Created:   %s\n" \
-                        "Roles:\n" \
-                        "%s" \
-                        "```" % (gid, owner[0], owner[1], region, membs, membs_on, users, users_on, bots, bots_on, tchans, vchans, created, roles)
+                        "```" % (membs, membs_on, users, users_on, bots, bots_on, created)
 
     await client.send_message(ctx.message.channel, embed=em)
     await client.delete_message(ctx.message)
 	
 @client.command(pass_context=True, aliases=['em', 'e'])
+@commands.has_permissions(kick_members=True)
 async def embed(ctx, *args):
     """
     Sending embeded messages with color (and maby later title, footer and fields)
