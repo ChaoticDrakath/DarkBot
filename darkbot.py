@@ -629,8 +629,53 @@ async def roles(context):
 	roles = context.message.server.roles
 	result = "The roles are "
 	for role in roles:
-		result += '``' + role.name + '``' + ": " + '``' + role.id + '``' + ",\n "
+		result += '``' + role.name + '``' + ": " + '``' + role.id + '``' + "\n "
 	await client.say(result)
     
+@client.command(pass_context=True, aliases=['server'])
+async def membercount(ctx, *args):
+    """
+    Shows stats and information about current guild.
+    ATTENTION: Please only use this on your own guilds or with explicit
+    permissions of the guilds administrators!
+    """
+    if ctx.message.channel.is_private:
+        await bot.delete_message(ctx.message)
+        return
+
+    g = ctx.message.server
+
+    gid = g.id
+    owner = [g.owner.name + "#" + g.owner.discriminator, g.owner.id]
+    region = str(g.region)
+    membs = str(len(g.members))
+    membs_on = str(len([m for m in g.members if not m.status == Status.offline]))
+    users = str(len([m for m in g.members if not m.bot]))
+    users_on = str(len([m for m in g.members if not m.bot and not m.status == Status.offline]))
+    bots = str(len([m for m in g.members if m.bot]))
+    bots_on = str(len([m for m in g.members if m.bot and not m.status == Status.offline]))
+    tchans = str(len([c for c in g.channels if c.type == ChannelType.text]))
+    vchans = str(len([c for c in g.channels if c.type == ChannelType.voice]))
+    created = str(g.created_at)
+    roles = ", ".join([r.name for r in g.roles])
+
+    em = Embed(title="Guild Information")
+    em.description =    "```\n" \
+                        "ID:        %s\n" \
+                        "Owner:     %s (%s)\n" \
+                        "Region:    %s\n" \
+                        "Members:   %s (%s)\n" \
+                        "  Users:   %s (%s)\n" \
+                        "  Bots:    %s (%s)\n" \
+                        "Channels:\n" \
+                        "  Text:    %s\n" \
+                        "  Voice:   %s\n" \
+                        "Created:   %s\n" \
+                        "Roles:\n" \
+                        "%s" \
+                        "```" % (gid, owner[0], owner[1], region, membs, membs_on, users, users_on, bots, bots_on, tchans, vchans, created, roles)
+
+    await client.send_message(ctx.message.channel, embed=em)
+    await client.delete_message(ctx.message)
 
 client.run(os.getenv('Token'))
