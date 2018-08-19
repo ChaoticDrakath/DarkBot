@@ -673,23 +673,10 @@ async def embed(ctx, *args):
     """
     Sending embeded messages with color (and maby later title, footer and fields)
     """
-    colors = {
-        "red": Color.red(),
-        "green": Color.green(),
-        "gold": Color.gold(),
-        "orange": Color.orange(),
-        "blue": Color.blue()
-    }
-    if args:
-        argstr = " ".join(args)
-        if "-c " in argstr:
-            text = argstr.split("-c ")[0]
-            color_str = argstr.split("-c ")[1]
-            color = colors[color_str] if color_str in colors else Color.default()
-        else:
-            text = argstr
-            color = Color.default()
-        await client.send_message(ctx.message.channel, embed=Embed(color=color, description=text))
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    text = argstr
+    color = discord.Color((r << 16) + (g << 8) + b)
+    await client.send_message(ctx.message.channel, embed=Embed(color = color, description=text))
     await client.delete_message(ctx.message)
 
 
