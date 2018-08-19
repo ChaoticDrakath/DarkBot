@@ -656,7 +656,7 @@ async def membercount(ctx, *args):
     bots_on = str(len([m for m in g.members if m.bot and not m.status == Status.offline]))
     created = str(g.created_at)
     
-    em = Embed(title="Guild Information")
+    em = Embed(title="Membercount")
     em.description =    "```\n" \
                         "Members:   %s (%s)\n" \
                         "  Users:   %s (%s)\n" \
@@ -668,7 +668,7 @@ async def membercount(ctx, *args):
     await client.delete_message(ctx.message)
 	
 @client.command(pass_context=True, aliases=['em', 'e'])
-@commands.has_permissions(kick_members=True)
+@commands.has_permissions(administrator=True)
 async def embed(ctx, *args):
     """
     Sending embeded messages with color (and maby later title, footer and fields)
