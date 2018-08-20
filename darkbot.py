@@ -277,7 +277,7 @@ async def help(ctx):
     embed.add_field(name = 'd!modhelp ',value ='Explaines all the commands which are only usable by Those who has moderation permissions. Like- Manage Nicknames, Manage Messages, Kick/Ban Members,etc.',inline = False)
     embed.add_field(name = 'd!generalhelp ',value ='Explaines all the commands which are usable by everyone.',inline = False)
     await client.send_message(author,embed=embed)
-    await client.say('✉ Check DMs For Information')
+    await client.say('📨 Check DMs For Information')
 @client.command(pass_context = True)
 async def modhelp(ctx):
     author = ctx.message.author
@@ -307,7 +307,7 @@ async def modhelp(ctx):
     embed.add_field(name = 'd!warn(Kick members Permission Required)',value ='Use it like ``d!warn @user <violation type>`` to warn any user',inline = False)    
     embed.add_field(name = 'd!norole(Kick members Permission Required) ',value ='Use it like ``d!norole @user`` to warn anyone if he/she asks for promotion',inline = False)
     await client.send_message(author,embed=embed)
-    await client.say('✉ Check DMs For Information')
+    await client.say('📨 Check DMs For Information')
 
 @client.command(pass_context = True)
 async def generalhelp(ctx):
@@ -332,7 +332,7 @@ async def generalhelp(ctx):
     embed.add_field(name = 'd!phynews ',value ='Use it to get physycs',inline = False)
     embed.add_field(name = 'd!verify ',value ='Use it to get verified role. Note- It needs proper setup.',inline = False)
     await client.send_message(author,embed=embed)
-    await client.say('✉ Check DMs For Information')
+    await client.say('📨 Check DMs For Information')
 
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)     
