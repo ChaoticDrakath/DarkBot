@@ -402,8 +402,11 @@ async def ban(ctx,user:discord.Member):
 
 @client.command(pass_context = True)
 async def mute(ctx, member: discord.Member):
-     if ctx.message.author.server_permissions.mute_members:
-        role = discord.utils.get(member.server.roles, name='Muted')
+     if user.server_permissions.kick_members:
+        await client.say('**He is mod/admin and i am unable to mute him/her**')
+        return
+     try:
+	role = discord.utils.get(member.server.roles, name='Muted')
         await client.add_roles(member, role)
         embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
         await client.say(embed=embed)
