@@ -403,7 +403,7 @@ async def ban(ctx,user:discord.Member):
 @client.command(pass_context = True)
 async def mute(ctx, member: discord.Member):
 
-    if user.server_permissions.kick_members:
+    if member.server_permissions.kick_members:
         await client.say('**He is mod/admin and i am unable to mute him/her**')
         return
     try:
