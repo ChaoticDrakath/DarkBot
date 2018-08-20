@@ -680,7 +680,7 @@ async def membercount(ctx, *args):
     await client.send_message(ctx.message.channel, embed=em)
     await client.delete_message(ctx.message)
 	
-@client.command(pass_context=True, aliases=['em', 'e'])
+@client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
 async def embed(ctx, *args):
     """
