@@ -287,6 +287,7 @@ async def modhelp(ctx):
     embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
     embed.add_field(name = 'd!say(Admin permission required) ',value ='Use it like ``d!say <text>``',inline = False)
     embed.add_field(name = 'd!embed(Admin permission required) ',value ='Use it like ``d!embed <text>``',inline = False)
+    embed.add_field(name = 'd!dm((Admin permission required) ',value ='Use it like ``d!dm @user <text>`` to dm anyone',inline = False)
     embed.add_field(name = 'd!membercount(Kick members Permission Required) ',value ='Use it like ``d!membercount`` to get membercount',inline = False)
     embed.add_field(name = 'd!removemod(Admin Permission Required)',value ='Use it like ``d!removemod @user`` to remove him from mod. Note-You need Moderator role in your server below darkbot to use it.',inline = False)
     embed.add_field(name = 'd!makemod(Admin Permission Required)',value ='Use it like ``d!makemod @user`` to make him mod. Note-You need Moderator role in your server below darkbot to use it.',inline = False)
