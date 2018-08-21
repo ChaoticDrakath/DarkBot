@@ -331,6 +331,9 @@ async def generalhelp(ctx):
     embed.add_field(name = 'd!spacenews ',value ='Use it to get space news',inline = False)
     embed.add_field(name = 'd!phynews ',value ='Use it to get physycs',inline = False)
     embed.add_field(name = 'd!verify ',value ='Use it to get verified role. Note- It needs proper setup.',inline = False)
+    embed.add_field(name = 'd!flipcoin ',value ='Flipps coin',inline = False)
+    embed.add_field(name = 'd!rolldice ',value ='Rolls dice',inline = False)
+    embed.add_field(name = 'd!avatar @user ',value ='Shows avatar',inline = False) 	
     await client.send_message(author,embed=embed)
     await client.say('📨 Check DMs For Information')
 
