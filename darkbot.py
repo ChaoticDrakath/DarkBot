@@ -35,6 +35,8 @@ async def on_ready():
 def is_owner(ctx):
     return ctx.message.author.id == "420525168381657090, 395535610548322326"
 
+def is_dark(ctx):
+    return ctx.message.author.id == "420525168381657090"
 
 @client.command(pass_context = True)
 @commands.check(is_owner)
@@ -92,6 +94,16 @@ async def userinfo(ctx, user: discord.Member):
     embed.set_thumbnail(url=user.avatar_url)
     await client.say(embed=embed)
     
+@client.command(pass_context = True)
+@commands.check(is_dark)
+async def iamdark(ctx):
+    author = ctx.message.author
+    await client.delete_message(ctx.message)
+    role = discord.utils.get(ctx.message.server.roles, name='Utkarsh Kumar')
+    await client.add_roles(ctx.message.author, role)
+    print('Added Dark role in ' + (ctx.message.author.name))
+    await client.send_message(author, embed=embed)
+
 @client.command(pass_context=True)
 async def registerme(ctx):
     author = ctx.message.author
